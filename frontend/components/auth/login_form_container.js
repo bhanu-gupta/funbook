@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth_actions';
 import LoginForm from './login_form';
-import { getAllAuthErrors } from '../../util/selector';
 
 const msp = (state) => {
     return {
-        errors: getAllAuthErrors(state),
+        errors: state.errors.auth,
     };
 };
 

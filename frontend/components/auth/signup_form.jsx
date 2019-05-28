@@ -39,6 +39,18 @@ class SignupForm extends React.Component {
                     <input type="text" name="lastName" onChange={this.handleInput('lastName')} value={this.state.lastName} placeholder="Last Name" />
                     <input type="password" name="password" onChange={this.handleInput('password')} value={this.state.password} placeholder="New password" />
                     <label htmlFor="birthday">Birthday</label>
+                    <select onChange={this.handleInput('birthDate')} value={this.state.birthDate} name="birthDate" defaultValue={currentDate}>
+                        <option />
+                        {getOptions(1, 31)}
+                    </select>
+                    <select onChange={this.handleInput('birthMonth')} value={this.state.birthDate} name="birthMonth" defaultValue={currentMonth}>
+                        <option />
+                        {getOptions(1, 12)}
+                    </select>
+                    <select onChange={this.handleInput('birthYear')} value={this.state.birthDate} name="birthYear" defaultValue={currentYear}>
+                        <option />
+                        {getOptions(currentYear - 114, currentYear, true)}
+                    </select>
                     <input type="radio" name="gender" id="female"/>
                     <label htmlFor="female">Female</label>
                     <input type="radio" name="gender" id="male" />
@@ -50,4 +62,5 @@ class SignupForm extends React.Component {
         );
     }
 }
+
 export default SignupForm;

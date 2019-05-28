@@ -6,7 +6,8 @@ const AuthIndex = () => {
     return (
         <>
         <div>Welcome to the Auth Page</div>
-
+        <LoginFormContainer />
+        <SignupFormContainer />
         </>
     );
 };
