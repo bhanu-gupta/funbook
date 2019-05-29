@@ -12,7 +12,8 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.processForm(this.state);
+        this.props.clearErrors();
+        this.props.login(this.state);
     }
 
     handleInput(field) {
@@ -28,12 +29,18 @@ class LoginForm extends React.Component {
         return (
             <>
                 <ul>{all_errors}</ul>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" name="email" id="email" onChange={this.handleInput('email')} value={this.state.email} />
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" id="password" onChange={this.handleInput('password')} value={this.state.password} />
-                    <input type="submit" value="Submit" />
+                <form className="login_form" onSubmit={this.handleSubmit}>
+                    <div className="input">
+                        <label htmlFor="email">Email</label>
+                        <input type="text" name="email" id="email" onChange={this.handleInput('email')} value={this.state.email} />
+                        <span></span>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="password">Password</label>
+                        <input className="input_pwd" type="password" name="password" id="password" onChange={this.handleInput('password')} value={this.state.password} />
+                        <a href="#"><span>Forgot account?</span></a>
+                    </div>
+                    <input className="submit" type="submit" value="Log In" />
                 </form>
             </>
         );

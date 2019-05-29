@@ -1,0 +1,258 @@
+.auth-header {
+    background-color:#3b5998;
+    background-image:linear-gradient(#4e69a2, #3b5998 50%);
+    border-bottom:1px solid #133783;
+    height:82px;
+}
+
+.auth-header nav {
+    width:980px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top:13px;
+    height: 65px;
+}
+
+.auth-header h1{
+    font-weight:1000px;
+    color:#fff;
+    font-size: 40px;
+}
+
+.auth-header h1 i{
+    background-image: url('https://facebook.com/rsrc.php/v3/y4/r/gf6iHxsw8zm.png');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 100%;
+    width: 170px;
+    height: 33px;
+    margin-top:17px;
+    display: inline-block;
+}
+
+.login_form {
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    width:385px;
+}
+
+.login_form .input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size:12px;
+}
+
+.login_form input {
+    border: 1px solid #1d2a5b;
+    width: 146px;
+    height:20px;
+}
+
+.login_form .submit {
+    border: 1px solid #ccd0d5;
+    cursor: pointer;
+    padding: 2px 6px;
+    line-height: 18px;
+    font-weight:bold;
+    background-color: #4267b2;
+    border-color: #29487d;
+    height: 24px;
+    margin: auto 0;
+    color: #fff;
+    width: 50px;
+}
+
+.login_form .input span {
+    height: 12px;
+    color: #9cb4d8;
+}
+
+.login_form input.input_pwd {
+    margin-top: 3px;
+}
+
+.login_form input:focus {
+    outline: none;
+}
+
+.auth-info-section {
+    width: 565px;
+    margin-right: 20px;
+}
+
+.auth-info-section h2{
+    padding: 42px 0 24px;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: bold;
+    color: #333;
+    font-family: 'Freight Sans Bold', Helvetica, Arial, sans-serif
+}
+
+.auth-info-section img{
+    width: 56px;
+    height: 56px;
+    margin-right:15px;
+}
+
+.auth-info-section li {
+    list-style-type: none;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.auth-info-section li span {
+    color: #666;
+    font-size: 15px;
+}
+.auth-info-section li span.highlighted {
+    color: #333;
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+.auth-signup-section {
+    display: flex;
+    flex-direction: column;
+    width: 399px;
+    font-family: 'Freight Sans', Helvetica, Arial, sans-serif;
+}
+
+.auth-signup-section .signup_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-signup-section h2{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.auth-signup-section h3{
+    font-size: 19px;
+    font-weight: normal;
+    margin: 5px 0 20px 0; 
+}
+
+.signup_form input {
+    font-size: 18px;
+    padding: 8px 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 5px;
+    margin: 0;
+    width: 377px;
+    margin-bottom: 10px;
+}
+
+.signup_form a {
+    font-size: 11px;
+    max-width: 150px;
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.signup_form select {
+    background-color: #fff;
+    color: #1c1e21;
+    border: 1px solid #ccd0d5;
+    height: 30px;
+    padding: 5px 10px;
+}
+
+.signup_form input:focus, .signup_form select:focus{
+    outline: none;
+}
+
+.signup_form .birthday_label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.signup_form .input_gender {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.signup_form .input_gender input {
+    width: auto;
+    margin: 0 8px;
+}
+
+.signup_form .input_gender label {
+    width: auto;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.signup_form .confirm {
+    width: 316px;
+    font-size: 11px;
+    color: #777;
+    margin: 11px 0;
+}
+
+.signup_form .name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup_form .name input {
+    width: 172px;
+}
+
+.signup_form input[type=submit] {
+    background: linear-gradient(#67ae55, #578843);
+    background-color: #69a74e;
+    box-shadow: inset 0 1px 1px #a4e388;
+    border-color: #3b6e22 #3b6e22 #2c5115;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: normal;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    background-color: white;
+    width: 194px;
+    padding: 7px 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.auth-signup-section .create_page {
+    border-top: 1px solid #dddfe2;
+    color: #666;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.auth-signup-section .create_page a{
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* .signup_form input:invalid {
+    border: 1px solid #FF0000;
+}
+
+input:focus:invalid {
+  border: 1px solid green;
+}
+
+input:focus:valid {
+     border: 1px solid #ccd0d5; 
+} */

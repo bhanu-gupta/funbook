@@ -9,11 +9,12 @@ export const getCurrentFullDate = () => {
     };
 };
 
-export const getSelectOptions = (start, end, reverseOrder) => {
+export const getSelectOptions = (start, end, reverseOrder = false, valuesArr = []) => {
     const options = [];
 
     for (let i = start; i <= end; i++) {
-        options.push(<option key={i}>{i}</option>)
+        const optionVal = valuesArr[i - 1] ? valuesArr[i - 1] : i;
+        options.push(<option key={i} value={i}>{optionVal}</option>)
     }
 
     if (reverseOrder === true) {

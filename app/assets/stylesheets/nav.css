@@ -1,0 +1,41 @@
+.main-header {
+    background-color:#3b5998;
+    background-image:linear-gradient(#4e69a2, #3b5998 50%);
+    border-bottom:1px solid #133783;
+    height:43px;
+}
+
+.main-header h1 i{
+    background-image: url('https://facebook.com/rsrc.php/v3/yh/r/JLmjxh1e5cQ.png');
+    background-repeat: no-repeat;
+    background-position: -33px -28px;
+    background-size: 140px 158px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.main-header nav {
+    width:1012px;
+    margin-left: 38px;
+    display: flex;
+    justify-content: space-between;
+    padding-top:13px;
+}
+
+.main-header ul.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.main-header ul.nav-links li {
+    list-style-type: none;
+    padding: 0 5px;
+    color: #fff;
+}
+
+.search-nav {
+    display:flex;
+    justify-content: flex-start;
+}

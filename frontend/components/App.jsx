@@ -6,7 +6,6 @@ import { Route } from 'react-router-dom';
 const App = () => {
     return (
         <div>
-            <h1>Funbook</h1>
             <AuthRoute path="/" component={AuthIndex} />
         </div>
     )

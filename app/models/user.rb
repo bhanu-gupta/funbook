@@ -25,12 +25,12 @@ class User < ApplicationRecord
     validates :birth_month, :birth_year, :birth_date, format: { with: /\A[0-9]+\z/, message: 'This date has certain characters that aren\'t allowed.'}, allow_nil: true
     validate :validate_age
 
-    after_initialize :ensure_session_token
+    after_initialize :ensure_session_token,:generate_birthday, :generate_username
 
     attr_reader :password, :birth_date, :birth_year, :birth_month
 
-    def self.find_by_credentials(username, password)
-        @user = User.find_by(username: username)
+    def self.find_by_credentials(email, password)
+        @user = User.find_by(email: email)
         @user && @user.is_password?(password) ? @user : nil
     end
 
@@ -57,20 +57,36 @@ class User < ApplicationRecord
         SecureRandom::urlsafe_base64(16)
     end
 
-    def validate_age
-        current_year = Time.current.year
-        birth_year = self.birthday.year
-        if (current_year - birth_year) >= 18 
-            errors.add(:birthday, 'Sorry, we are not able to process your registration.')
+    def generate_birthday
+        if self.birth_month && self.birth_date && self.birth_year
+            date = Date.new(self.birth_year, self.birth_month, self.birth_date)
+            self.birthday = date.to_s(:db)
         end
     end
 
-    def birthday=(birthday)
-        date = Date.new(self.birth_year, self.birth_month, self.birth_date)
-        @birthday = date.to_s(:db)
+    def birth_year=(birth_year)
+        @birth_year = birth_year.to_i
     end
 
-    def username=(username) 
-        @username = (self.first_name + "_" + self.last_name)
+     def birth_month=(birth_month)
+        @birth_month = birth_month.to_i
+    end
+
+    def birth_date=(birth_date)
+        @birth_date = birth_date.to_i
+    end
+
+    def generate_username
+        if (self.email)
+            @email_arr = self.email.split("@")
+            self.username = @email_arr.first.downcase
+        end
+        # self.username = (self.first_name.downcase + "_" + self.last_name.downcase)
+    end
+
+    def validate_age
+        if (Time.current.year - self.birthday.year) < 18 
+            errors.add(:birthday, 'Sorry, we are not able to process your registration.')
+        end
     end
 end

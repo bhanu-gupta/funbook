@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import authErrorsReducer from './auth_errors_reducer';
+import loginErrorsReducer from './login_errors_reducer';
+import signupErrorsReducer from './signup_errors_reducer';
 
 export default combineReducers({
-    auth: authErrorsReducer
+    login: loginErrorsReducer,
+    signup: signupErrorsReducer
 });
