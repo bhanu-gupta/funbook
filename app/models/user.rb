@@ -16,18 +16,18 @@
 #
 
 class User < ApplicationRecord
-    validates :username, :session_token, :email, presence: true, uniqueness: true
+    validates :session_token, :email, presence: true, uniqueness: true
     validates :password_digest, :first_name, :last_name, :gender, :birthday, presence: true
-    validates :password, length: {minimum: 6, message: 'Your password must be at least 6 characters long. Please try another.'}, allow_nil: true
-    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'Please enter a valid email address.'} 
-    validates :gender, inclusion: { in: ['M', 'F'] }
     validates :first_name, :last_name, format: { with: /\A[a-z]+\z/i, message: 'This name has certain characters that aren\'t allowed.'} 
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'It looks like you may have entered an incorrect email address. Please correct it if necessary, then click to continue.'} 
+    validates :password, length: {minimum: 6, message: 'Your password must be at least 6 characters long. Please try another.'}, allow_nil: true
+    validates :gender, inclusion: { in: ['M', 'F'] }
     validates :birth_month, :birth_year, :birth_date, format: { with: /\A[0-9]+\z/, message: 'This date has certain characters that aren\'t allowed.'}, allow_nil: true
-    validate :validate_age
+    validate :validate_age, :validate_email
 
     after_initialize :ensure_session_token,:generate_birthday, :generate_username
 
-    attr_reader :password, :birth_date, :birth_year, :birth_month
+    attr_reader :password, :birth_date, :birth_year, :birth_month, :email2
 
     def self.find_by_credentials(email, password)
         @user = User.find_by(email: email)
@@ -78,15 +78,24 @@ class User < ApplicationRecord
 
     def generate_username
         if (self.email)
-            @email_arr = self.email.split("@")
-            self.username = @email_arr.first.downcase
+            email_arr = self.email.split("@")
+            self.username = email_arr.first.downcase if email_arr.first
         end
-        # self.username = (self.first_name.downcase + "_" + self.last_name.downcase)
     end
 
     def validate_age
         if (Time.current.year - self.birthday.year) < 18 
             errors.add(:birthday, 'Sorry, we are not able to process your registration.')
+        end
+    end
+
+    def email2=(email2)
+        @email2 = email2
+    end
+
+    def validate_email
+        if self.email2 && self.email != self.email2
+            errors.add(:email2, 'Your emails do not match. Please try again.')
         end
     end
 end

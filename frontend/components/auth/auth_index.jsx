@@ -17,10 +17,15 @@ const AuthIndex = () => {
                 <LoginFormContainer />
             </nav>
         </header>
-        <main className="main-content">
+        <main className="main-content no-pdn">
             <div className="auth-content">
                 <AuthInfo />
-                <SignupFormContainer />
+                    <section className="auth-signup-section">
+                        <h2>Sign Up</h2>
+                        <h3>It's free and always will be.</h3>
+                        <SignupFormContainer />
+                        <div className="create_page"><a href="#">Create a Page</a> for a celebrity, band or business.</div>
+                    </section>
             </div>
         </main>
         </>

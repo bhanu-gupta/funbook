@@ -31,25 +31,12 @@
     margin-bottom: 10px;
 }
 
-.signup_form a {
-    font-size: 11px;
-    max-width: 150px;
-    color: #385898;
-    cursor: pointer;
-    text-decoration: none;
-    margin-left: 5px;
-}
-
 .signup_form select {
     background-color: #fff;
     color: #1c1e21;
     border: 1px solid #ccd0d5;
     height: 30px;
     padding: 5px 10px;
-}
-
-.signup_form input:focus, .signup_form select:focus{
-    outline: none;
 }
 
 .signup_form .birthday_label {
@@ -126,4 +113,25 @@
     color: #385898;
     cursor: pointer;
     text-decoration: none;
+}
+
+.main-content.no-pdn{
+    padding-top:0;
+}
+
+.signup-form-section {
+    padding-top: 20px;
+}
+
+.signup-btn.small-btn {
+    line-height: 15px;
+    width:auto;
+    padding: 7px 10px;
+    font-size: 12px;
+    margin-left:10px;
+    bottom: 6px;
+}
+
+.signup_form .input-box, .login_form_page .input-box{
+    position: relative;
 }

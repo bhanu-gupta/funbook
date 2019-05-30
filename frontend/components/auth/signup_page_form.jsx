@@ -16,10 +16,14 @@ export default () => {
                 <LoginFormContainer />
             </nav>
         </header>
-        <main className="main-content">
+            <main className="main-content no-pdn">
             <div className="middle-section">
-                <div className="login_form_section" >
-                    <SignupFormContainer />
+                <div className="signup-form-section" >
+                    <section className="auth-signup-section">
+                        <h2>Create a New Account</h2>
+                        <h3>It's free and always will be.</h3>
+                            <SignupFormContainer />
+                        </section>
                 </div>
             </div>
         </main>

@@ -8,6 +8,7 @@ body {
 .main-content {
     width:100%;
     background-color: #e9ebee;
+    padding: 80px 0;
 }
 
 .auth-content {
@@ -36,5 +37,79 @@ button {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 19px;
+    font-weight: bold;
+}
+
+input:focus, select:focus {
+    outline: none;
+}
+
+a {
+    font-size: 11px;
+    max-width: 150px;
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.error-icon {
+    color: #B94A48;
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+    top: 13px;
+}
+
+.tooltip {
+    width: 300px;
+    position: absolute;
+    background-color: #be4b49;
+    top: -5px;
+    right: 105%; 
+    color: #fff;
+    text-align: center;
+    padding: 13px;
+    border-radius: 2px;
+    z-index:1;
+    box-shadow: 0 0 0 1px rgba(139, 3, 0, .75), 0 1px 10px rgba(0, 0, 0, .35);
+    font-size: 13px;
+    max-width: 300px;
+}
+
+.tooltip::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color:transparent transparent transparent #be4b49 ;
+}
+
+.signup_form input.err-border {
+    border: 1px solid red;
+}
+
+.all_errors {
+    background: #ffebe8;
+    border: 1px solid #dd3c10;
+    line-height: 15px;
+    margin: 12px 0;
+    overflow: hidden;
+    text-align: center;
+    height: auto;
+    padding: 7px 3px;
+    color: #1c1e21;
+    font-size: 12px;
+}
+
+.tooltip a{
+    color: #fff;
     font-weight: bold;
 }
