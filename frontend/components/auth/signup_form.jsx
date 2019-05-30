@@ -21,7 +21,12 @@ class SignupForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        
+    }
+
     handleSubmit(e) {
+        debugger
         e.preventDefault();
         this.props.clearErrors();
         this.props.signup(this.state);
@@ -37,7 +42,7 @@ class SignupForm extends React.Component {
     reportValidationErrors() {
         return (e) => {
             // debugger
-            e.currentTarget.reportValidity();
+            // e.currentTarget.reportValidity();
         }
     }
 
@@ -53,10 +58,10 @@ class SignupForm extends React.Component {
                 <form className="signup_form" onSubmit={this.handleSubmit} ref={this.form}>
                     <ul>{all_errors}</ul> 
                     <div className="name">
-                        <input type="text" required name="first_name" onBlur={this.reportValidationErrors()} onChange={this.updateInput('first_name')} value={this.state.first_name} placeholder="First Name"/>
+                        <input type="text" required name="first_name" onChange={this.updateInput('first_name')} value={this.state.first_name} placeholder="First Name"/>
                         <input type="text" required name="last_name" onChange={this.updateInput('last_name')} value={this.state.last_name} placeholder="Last Name" />
                     </div>
-                    <input type="email" required name="email" onBlur={this.reportValidationErrors()} onChange={this.updateInput('email')} value={this.state.email} placeholder="Email" />
+                    <input type="email" required name="email" onChange={this.updateInput('email')} value={this.state.email} placeholder="Email" />
                     <input type="password" required name="password" minLength="6" onChange={this.updateInput('password')} value={this.state.password} placeholder="New password" />
                     <label className="birthday_label" htmlFor="birthday">Birthday</label>
                     <div className="select_birthday">

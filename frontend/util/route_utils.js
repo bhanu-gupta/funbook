@@ -9,7 +9,7 @@ const msp = state => ({
 
 const Auth = ({ loggedIn, path, component: Component }) => {
     return (
-        <Route path={path}
+        <Route exact path={path}
             render={props => (
                 loggedIn ? <FeedsIndexContainer {...props} />: <Component {...props} />
             )}

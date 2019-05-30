@@ -12,8 +12,7 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.clearErrors();
-        this.props.login(this.state);
+        this.props.login(this.state).fail(() => this.props.history.push('/login'));
     }
 
     handleInput(field) {
@@ -23,12 +22,8 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        const all_errors = this.props.errors.map((error, idx) => {
-            return <li key={idx}>{error}</li>;
-        });
         return (
             <>
-                <ul>{all_errors}</ul>
                 <form className="login_form" onSubmit={this.handleSubmit}>
                     <div className="input">
                         <label htmlFor="email">Email</label>

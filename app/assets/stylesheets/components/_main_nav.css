@@ -1,0 +1,101 @@
+.main-header {
+    background-color:#3b5998;
+    background-image:linear-gradient(#4e69a2, #3b5998 50%);
+    border-bottom:1px solid #133783;
+    height:43px;
+}
+
+.main-header h1 i{
+    background-image: url('https://facebook.com/rsrc.php/v3/yh/r/JLmjxh1e5cQ.png');
+    background-repeat: no-repeat;
+    background-position: -33px -28px;
+    background-size: 140px 158px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.main-header nav {
+    width:1012px;
+    margin-left: 38px;
+    display: flex;
+    justify-content: space-between;
+    padding-top:13px;
+}
+
+.main-header ul.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.main-header ul.nav-links li {
+    list-style-type: none;
+    padding: 0 5px;
+    color: #fff;
+}
+
+.search-nav {
+    display:flex;
+    justify-content: flex-start;
+}
+
+.dropdown-nav {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    white-space: nowrap;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: 200px;
+    /* overflow-y: scroll; */
+    /* height: 100px; */
+}
+
+.dropdown-icon {
+    position: relative;
+}
+
+.dropdown-icon i{
+    background-image: url('https://facebook.com/rsrc.php/v3/yh/r/JLmjxh1e5cQ.png');
+    background-repeat: no-repeat;
+    background-size: 140px 158px;
+    background-position: -58px -28px;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.main-header ul.nav-links  ul.dropdown-nav li{
+    color: #1d2129;
+    padding: 2px 0 2px 20px;
+    font-size: 12px;
+}
+
+.dropdown-nav .separator {
+    border-bottom: 1px solid #e9ebee;
+    margin: 5px 7px 6px;
+    padding-top: 1px;
+}
+
+.main-header ul.nav-links a{
+    cursor: pointer;
+}
+
+.main-header ul.nav-links li:hover {
+    background-color: #4267b2;
+}
+
+.main-header ul.nav-links  ul.dropdown-nav li:hover{
+    color: #fff;
+}

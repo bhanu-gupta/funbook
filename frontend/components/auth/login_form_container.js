@@ -1,18 +1,12 @@
 import { connect } from 'react-redux';
-import { login, clearErrors } from '../../actions/auth_actions';
+import { login } from '../../actions/auth_actions';
 import LoginForm from './login_form';
-
-const msp = (state) => {
-    return {
-        errors: state.errors.login,
-    };
-};
+import {withRouter} from 'react-router-dom';
 
 const mdp = (dispatch) => {
     return {
-        login: (loginForm) => dispatch(login(loginForm)),
-        clearErrors: () => dispatch(clearErrors())
+        login: (loginForm) => dispatch(login(loginForm))
     };
 };
 
-export default connect(msp, mdp)(LoginForm);
+export default withRouter(connect(null, mdp)(LoginForm));
