@@ -4,7 +4,7 @@ export const getCurrentFullDate = () => {
     const today = new Date();
     return {
         year: today.getFullYear(),
-        month: today.getMonth(),
+        month: today.getMonth() + 1,
         date: today.getDate()
     };
 };

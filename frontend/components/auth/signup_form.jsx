@@ -238,7 +238,7 @@ class SignupForm extends React.Component {
                             onChange={this.updateInput('birth_month')} 
                             value={this.state.data.birth_month} 
                             name="birth_month">
-                            <option key="0" value="0">Month</option>
+                            <option key="0" value="0" disabled>Month</option>
                             {getSelectOptions(1, 12, false, months)}
                         </select>
                         <select 
@@ -246,7 +246,7 @@ class SignupForm extends React.Component {
                             onChange={this.updateInput('birth_date')} 
                             value={this.state.data.birth_date} 
                             name="birth_date">
-                            <option key="0" value="0">Day</option>
+                            <option key="0" value="0" disabled>Day</option>
                             {getSelectOptions(1, 31)}
                         </select>
                         <select 
@@ -254,7 +254,7 @@ class SignupForm extends React.Component {
                             onChange={this.updateInput('birth_year')} 
                             value={this.state.data.birth_year} 
                             name="birth_year">
-                            <option key="0" value="0">Year</option>
+                            <option key="0" value="0" disabled>Year</option>
                             {getSelectOptions(this.fullDate.year - 114, this.fullDate.year, true)}
                         </select>
                         <a href="#" title="Click for more information">Why do I need to provide my birthday?</a>

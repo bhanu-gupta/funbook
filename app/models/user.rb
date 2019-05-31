@@ -17,15 +17,15 @@
 
 class User < ApplicationRecord
     validates :session_token, :email, presence: true, uniqueness: true
-    validates :password_digest, :first_name, :last_name, :gender, :birthday, presence: true
+    validates :password_digest, :first_name, :last_name, :gender, presence: true
     validates :first_name, :last_name, format: { with: /\A[a-z]+\z/i, message: 'This name has certain characters that aren\'t allowed.'} 
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'It looks like you may have entered an incorrect email address. Please correct it if necessary, then click to continue.'} 
     validates :password, length: {minimum: 6, message: 'Your password must be at least 6 characters long. Please try another.'}, allow_nil: true
     validates :gender, inclusion: { in: ['M', 'F'] }
     validates :birth_month, :birth_year, :birth_date, format: { with: /\A[0-9]+\z/, message: 'This date has certain characters that aren\'t allowed.'}, allow_nil: true
-    validate :validate_age, :validate_email
+    validate :validate_email, :validate_birthday
 
-    after_initialize :generate_birthday, :generate_username, :ensure_session_token
+    after_initialize :generate_username, :ensure_session_token
 
     attr_reader :password, :birth_date, :birth_year, :birth_month, :email2
 
@@ -84,7 +84,11 @@ class User < ApplicationRecord
     end
 
     def validate_age
-        if (Time.current.year - self.birthday.year) < 18 
+        begin
+            if (Time.current.year - self.birthday.year) < 18 
+                errors.add(:birthday, 'Sorry, we are not able to process your registration.')
+            end
+        rescue => exception
             errors.add(:birthday, 'Sorry, we are not able to process your registration.')
         end
     end
@@ -96,6 +100,18 @@ class User < ApplicationRecord
     def validate_email
         if self.email2 && self.email != self.email2
             errors.add(:email2, 'Your emails do not match. Please try again.')
+        end
+    end
+
+    def validate_birthday
+        begin
+            if self.birth_date && self.birth_month && self.birth_month
+                date = Date.new(self.birth_year, self.birth_month, self.birth_date)
+                self.birthday = date.to_s(:db)
+                self.validate_age
+            end
+        rescue => exception
+            errors.add(:birthday, 'The selected date is not valid.')
         end
     end
 end
