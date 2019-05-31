@@ -25,7 +25,7 @@ class User < ApplicationRecord
     validates :birth_month, :birth_year, :birth_date, format: { with: /\A[0-9]+\z/, message: 'This date has certain characters that aren\'t allowed.'}, allow_nil: true
     validate :validate_age, :validate_email
 
-    after_initialize :ensure_session_token,:generate_birthday, :generate_username
+    after_initialize :generate_birthday, :generate_username, :ensure_session_token
 
     attr_reader :password, :birth_date, :birth_year, :birth_month, :email2
 

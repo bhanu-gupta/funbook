@@ -172,6 +172,7 @@ class SignupForm extends React.Component {
             </div>
         );
         return (
+                <>
                 <form className="signup_form" onSubmit={this.handleSubmit} ref={this.form}>
                     {allErrors}
                     <div className="name">
@@ -281,8 +282,12 @@ class SignupForm extends React.Component {
                         <Link to="www.facebook.com/about/privacy/update">Data Policy</Link> and 
                         <Link to="www.facebook.com/policies/cookies">Cookies Policy</Link>. You may receive SMS Notifications from us and can opt out any time.
                     </p>
-                    <input type="submit" value="Sign Up" />
+                    <div>
+                        <input type="submit" value="Sign Up" />
+                    </div>
                 </form>
+                <button onClick={this.props.demoLogin}>Demo Login</button>
+                </>
         );
     }
 }
