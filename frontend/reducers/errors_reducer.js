@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import loginErrorsReducer from './login_errors_reducer';
 import signupErrorsReducer from './signup_errors_reducer';
+import postErrorsReducer from './posts_errors_reducer';
 
 export default combineReducers({
     login: loginErrorsReducer,
-    signup: signupErrorsReducer
+    signup: signupErrorsReducer,
+    post: postErrorsReducer
 });

@@ -101,7 +101,7 @@ class SignupForm extends React.Component {
         if ((field === 'first_name' || field === 'last_name') && !value) {
             return 'What\'s your name?';
         } else if (field === 'gender' && !value) {
-            return 'Please select a gender';
+            return 'Please choose a gender. You can change who can see this later.';
         } else if (field === 'email' || field == 'email2') {
             if(!value) {
                 return 'You\'ll use this when you log in and if you ever need to reset your password.';

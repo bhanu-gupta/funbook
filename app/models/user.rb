@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
-#  username        :string           not null
+#  username        :string
 #  email           :string           not null
 #  first_name      :string           not null
 #  last_name       :string           not null
@@ -28,6 +28,12 @@ class User < ApplicationRecord
     after_initialize :generate_username, :ensure_session_token
 
     attr_reader :password, :birth_date, :birth_year, :birth_month, :email2
+
+    has_many :posts
+    has_many :authored_posts,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :Post
 
     def self.find_by_credentials(email, password)
         @user = User.find_by(email: email)
