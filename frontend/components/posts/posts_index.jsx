@@ -11,13 +11,6 @@ class PostsIndex extends React.Component {
         this.fetchProfilePosts(this.props.match.params.user_id);
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.match.params.user_id !== this.props.match.params.userId) {
-    //         debugger
-    //         this.fetchProfilePosts(this.props.match.params.user_id);
-    //     }
-    // }
-
     fetchProfilePosts(userId) {
         if (this.props.currentUser.id === userId) {
             this.props.fetchMyPosts();
@@ -27,7 +20,6 @@ class PostsIndex extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const allPosts = this.props.posts.map(post => {
             return <PostsIndexItem key={post.id} post={post}/>;
         });

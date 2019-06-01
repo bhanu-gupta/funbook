@@ -30,10 +30,30 @@ class User < ApplicationRecord
     attr_reader :password, :birth_date, :birth_year, :birth_month, :email2
 
     has_many :posts
+
     has_many :authored_posts,
         primary_key: :id,
         foreign_key: :author_id,
         class_name: :Post
+    
+    has_many :authored_comments,
+        primary_key: :id,
+        foreign_key: :author_id,
+        class_name: :User
+
+    has_many :received_friend_requests,
+        primary_key: :id,
+        foreign_key: :receiver_id,
+        class_name: :User
+
+    has_many :sent_friend_requests,
+        primary_key: :id,
+        foreign_key: :requestor_id,
+        class_name: :User
+
+    has_many :profile_comments,
+        through: :posts,
+        source: :comments
 
     def self.find_by_credentials(email, password)
         @user = User.find_by(email: email)

@@ -5,6 +5,8 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
 const receivePosts = (posts) => {
     return {
@@ -34,6 +36,27 @@ const receivePostErrors = (errors) => {
     }
 }
 
+const handleFetchProfilePosts = (postsData, dispatch) => {
+    const {posts, comments, users} = postsData;
+    dispatch(receivePosts(posts));
+    dispatch(receiveUsers(users));
+    dispatch(receiveComments(comments));
+}
+
+export const receiveUsers = (users) => {
+    return {
+        type: RECEIVE_USERS,
+        users
+    }
+}
+
+export const receiveComments = (comments) => {
+    return {
+        type: RECEIVE_COMMENTS,
+        comments
+    }
+}
+
 export const clearErrors = () => {
     return {
         type: CLEAR_ERRORS
@@ -43,7 +66,7 @@ export const clearErrors = () => {
 export const fetchMyPosts = () => {
     return dispatch => {
         return PostsAPIUtil.fetchMyPosts().then(
-            (posts) => dispatch(receivePosts(posts))
+            (postsData) => handleFetchProfilePosts(postsData, dispatch)
         );
     }
 }
@@ -51,7 +74,7 @@ export const fetchMyPosts = () => {
 export const fetchFriendPosts = (userId) => {
     return dispatch => {
         return PostsAPIUtil.fetchFriendPosts(userId).then(
-            (posts) => dispatch(receivePosts(posts))
+            (postsData) => handleFetchProfilePosts(postsData, dispatch)
         );
     }
 }

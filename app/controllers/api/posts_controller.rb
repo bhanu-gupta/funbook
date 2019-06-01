@@ -2,7 +2,7 @@ class Api::PostsController < ApplicationController
 
     def index
         user_id = params[:user_id] || current_user.id 
-        @posts = Post.where(user_id: user_id).order("created_at DESC")
+        @posts = Post.includes([:author, comments: [:author, :parent_comment]]).where(user_id: user_id).order("created_at DESC")
         render :index
     end
 
@@ -26,16 +26,17 @@ class Api::PostsController < ApplicationController
         else
             render json: ["You can only edit your own posts"], status: 422
         end
-
     end
 
     def destroy
         @post = current_user.authored_posts.find_by(id: params[:id])
         if @post
-            @post.destroy
-            render json: ['Post successfully removed']
+            if @post.destroy
+                @post.comments.destroy_all
+                render json: ['Post successfully removed']
+            end
         else 
-            render json: ["You can delete your own posts"], status: 422
+            render json: ["You can only delete your own posts"], status: 422
         end
     end
 
