@@ -1,0 +1,16 @@
+.friend-requests {
+    width: 667px;
+    background: #fff;
+}
+
+.pdng-20 {
+    padding-top: 20px;
+}
+
+.friend-requests header {
+
+}
+
+.friend-requests ul > li {
+    width: 94%;
+}

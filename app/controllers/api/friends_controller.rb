@@ -2,11 +2,12 @@ class Api::FriendsController < ApplicationController
     
     def index
         user_id = params[:user_id] || current_user.id 
-        if user_id != current_user.id 
-            @friends = Friend.get_user_friends(user_id, "accepted")
+        if params[:type] == 'requests'
+            @friends = Friend.get_user_friends(user_id, "pending")
         else
-            @friends = Friend.get_user_friends(user_id)
+           @friends = Friend.get_user_friends(user_id, "accepted")
         end
+        @user = (user_id != current_user.id) ? User.find_by(id: user_id) : current_user
         render :index
     end
 
@@ -33,7 +34,7 @@ class Api::FriendsController < ApplicationController
     end
 
     def destroy
-        friend_requests = Friend.where('requestor_id=? OR receiver_id=?', params[:user_id], params[:user_id])
+        friend_requests = Friend.where('(requestor_id=? AND receiver_id = ?) OR (receiver_id=? AND requestor_id = ?)', params[:user_id], current_user.id, params[:user_id], current_user.id)
         @friend_request = friend_requests.first
         if friend_requests
             if friend_requests.destroy_all

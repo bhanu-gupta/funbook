@@ -32,3 +32,13 @@ export const removeFriendRequest = (requestorId) => {
         url: `api/users/${requestorId}/friends`
     });
 } 
+
+export const fetchFriendRequestsData = () => {
+    return $.ajax({
+        method: 'GET',
+        url: `/api/friends`,
+        data: {
+            type: 'requests'
+        }
+    })
+} 

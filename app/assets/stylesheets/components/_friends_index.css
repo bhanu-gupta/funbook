@@ -1,0 +1,99 @@
+.friends-section {
+    background: #fff;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+}
+
+.friends-section li {
+    list-style-type: none;
+}
+
+.friends-section .friends-header {
+    display:flex;
+    justify-content: space-between;
+    height: 40px;
+    background-color: #f5f6f7;
+    border-bottom: 1px solid #d3d6db;
+    border-radius: 2px 2px 0 0;
+    margin-bottom: 15px;
+    padding-top:16px;
+}
+
+.friends-header .heading {
+    display:flex;
+    padding: 0 5px 12px 12px;
+    font-size: 25px;
+    color: #ADB3BC;
+    align-items: center;
+}
+
+.friends-header .heading h1{
+    color: #4B4F56;
+    font-size: 20px;
+}
+
+.friends-header .heading .friend-icon{
+    margin-right: 9px;
+}
+
+.friends-header a {
+    text-decoration: none;
+    font-size: 12px;
+    border: 1px solid #ccd0d5;
+    background-color: #F5F6F7;
+    padding: 5px 10px;
+    color: #4B4F56; 
+    font-weight: 700;
+    height: 16px;
+    margin-right: 6px;
+}
+
+ .friend-boxes {
+    overflow: auto;
+    min-height: 350px;
+}
+
+.friend-boxes > li {
+    width: 390px;
+    border: 1px solid #ccd0d5;
+    margin: 0 0 13px 13px;
+    padding-right: 10px;
+    float:left;
+    display:flex;
+    align-items: center;
+    position: relative;
+}
+
+.friend-boxes li .profile-img {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.friend-boxes li .profile-img img {
+    width: 100%;
+    min-height: initial;
+    height: auto;
+}
+
+.friend-boxes .friend-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-boxes .friend-info span.friend-name {
+    color: #385898;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.friend-boxes .friend-info span {
+    color: #90949c;
+    font-size: 12px;
+}
+
+.friend-boxes .header-buttons {
+    bottom: 23px;
+    right: 10px;
+}

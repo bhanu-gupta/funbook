@@ -1,0 +1,133 @@
+.profile-main {
+    padding-top: 0;
+}
+
+.profile-data {
+    margin-top:12px;
+}
+
+.profile-main .profile-content{
+    width: 981px;
+    margin: 0 auto;
+}
+
+.profile-middle {
+    margin-right: 20px;
+    width: 851px;
+}
+
+.profile-header {
+    border: 1px solid #d3d6db;
+    border-radius: 0 0 3px 3px;
+    background: #fff;
+    border-top:none;
+}
+
+.profile-header-main {
+     height: 205px;
+     background-color: #1c1e21;
+     position: relative;
+}
+
+.profile-header-menu {
+    height: 43px;
+}
+
+.profile-header-main .profile-pic{
+    border-radius: 100%;
+    background-color: #fff;
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    bottom: -22px;
+    left: 16px;
+    border: 4px solid #fff;
+}
+
+.profile-header ul li {
+    list-style-type: none;
+}
+
+.add-photo {
+    position: absolute;
+    bottom: -18px;
+    left: 20px;
+    overflow: hidden;
+    width: 160px;
+    background-color: rgba(0, 0, 0, .6);
+    transition: background-color .13s ease-out;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    height: 80px;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size:12px;
+    font-weight: 700;
+}
+
+
+.photo-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height:100%;
+    padding-right: 16px;
+}
+
+.add-photo:hover {
+    background-color: #1c1e21;
+}
+
+.profile-header-main .user-name {
+    position: absolute;
+    color: #fff;
+    font-size: 24px;
+    bottom: 10px;
+    left: 200px;
+}
+
+.profile-header-main a {
+    text-decoration: none;
+}
+
+.photo-container span {
+    font-size: 13px;
+    color: #fff;
+}
+
+.camera-icon {
+     font-size: 0.6rem;
+     color:#B9B8B9;
+}
+
+.cover-pic-upload  {
+    position: absolute;
+    left: 26px;
+    top: 20px;
+}
+
+.profile-header-menu ul {
+    height: 100%;
+    padding-left: 201px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-header-menu ul a{
+    font-size: 16px;
+    color: #375898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.profile-header-menu li {
+    padding: 0 17px;
+    border-left: 1px solid #e9eaed;
+    height: 100%;
+    display:flex;
+    align-items: center;
+}

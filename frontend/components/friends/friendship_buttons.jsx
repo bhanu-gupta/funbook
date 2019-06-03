@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class FriendshipButtons extends React.Component {
 
@@ -14,18 +15,28 @@ class FriendshipButtons extends React.Component {
             default: "",
             friend: (
                 <>
-                    <button>Friends</button>
+                    <button>
+                        <i className="fas fa-check"></i>
+                        <span>Friends</span>
+
+                    </button>
                     <ul className="friend-dropdown">
                         <li onClick={this.removeFriend}>Unfriend</li>
                     </ul>
                 </>
             ),
             addFriend: (
-                    <button onClick={this.sendFriendRequest}>Add Friend</button>
+                    <button onClick={this.sendFriendRequest}>
+                        <i className="fas fa-user-plus"></i>
+                        <span>Add Friend</span>
+                    </button>
             ),
             sentFriend: (
                 <>
-                    <button>Friend Request Sent</button>
+                    <button>
+                        <i className="fas fa-user-plus"></i>
+                        <span>Friend Request Sent</span>
+                    </button>
                     <ul className="friend-dropdown">
                         <li onClick={this.removeFriend}>Cancel Request</li>
                     </ul>
@@ -33,7 +44,10 @@ class FriendshipButtons extends React.Component {
             ),
             receivedFriend: (
                 <>
-                    <button>Respond to Friend Request</button>
+                    <button>
+                        <i className="fas fa-user-plus"></i>
+                        <span>Respond to Friend Request</span>
+                    </button>
                     <ul className="friend-dropdown">
                         <li onClick={this.addFriend}>Confirm</li>
                         <li onClick={this.removeFriend}>Delete Request</li>

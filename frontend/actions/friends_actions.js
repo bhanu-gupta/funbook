@@ -1,5 +1,6 @@
 import * as FriendsAPIUtil from '../util/friends_api_util';
 import {receiveUsers} from '../actions/auth_actions';
+import {merge} from 'lodash';
 
 export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
 export const SEND_FRIEND_REQUEST = 'SEND_FRIEND_REQUEST';
@@ -37,17 +38,37 @@ const receiveFriendRequestErrors = (errors) => {
 export const fetchFriendsfriends = (userId) => {
     return dispatch => {
         return FriendsAPIUtil.fetchFriendsfriends(userId).then(
-            (friends) => dispatch(receiveUsers(friends))
+            (userData) => {
+                const { friends, user } = userData;
+                const allUsers = merge({}, friends, { [user.id]: user })
+                return dispatch(receiveUsers(allUsers));
+            }
         );
     }
 }
 
 export const fetchMyFriends = () => {
     return dispatch => {
-        return FriendsAPIUtil.fetchFriendsfriends(userId).then(
-            (friends) => dispatch(receiveUsers(friends))
+        return FriendsAPIUtil.fetchMyFriends().then(
+            (userData) => {
+                const { friends, user } = userData;
+                const allUsers = merge({}, friends, { [user.id]: user })
+                return dispatch(receiveUsers(allUsers));
+            }
         );
     }
+}
+
+export const fetchFriendRequestsData = () => {
+    return (dispatch) => {
+        return FriendsAPIUtil.fetchFriendRequestsData().then(
+            (userData) => {
+                const { friends, user } = userData;
+                const allUsers = merge({}, friends, { [user.id]: user })
+                return dispatch(receiveUsers(allUsers));
+            }
+        );
+    };
 }
 
 export const sendFriendRequest = (receiverId) => {

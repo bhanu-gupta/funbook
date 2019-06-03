@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import LoginPageFormContainer from './auth/login_page_form_container';
 import SignupPageForm from './auth/signup_page_form';
 import UserProfileIndex from './user_profile/user_profile_index';
+import FriendRequestsContainer from './friends/friend_requests_container';
 
 const App = () => {
     return (
@@ -13,6 +14,7 @@ const App = () => {
             <AuthRoute path="/signup" component={SignupPageForm} />
             <Route path="/users/:userId" component={UserProfileIndex} />
             <AuthRoute exact path="/" component={AuthIndex} />
+            <ProtectedRoute path="/friends/requests" component={FriendRequestsContainer} />
         </div>
     )
 };

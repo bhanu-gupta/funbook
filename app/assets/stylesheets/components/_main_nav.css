@@ -19,11 +19,11 @@
 
 .main-header nav {
     width:1012px;
-    margin-left: 38px;
     display: flex;
     justify-content: space-between;
     padding-top: 2px;
     height: 100%;
+    margin: 0 auto;
 }
 
 .main-header ul.nav-links {

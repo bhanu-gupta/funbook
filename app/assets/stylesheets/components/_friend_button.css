@@ -1,0 +1,66 @@
+.header-buttons button {
+    background: #e9ebee;
+    cursor: pointer;
+    line-height: 26px;
+    padding: 0 10px;
+    box-shadow: none;
+    font-size: 12px;
+    width: auto;
+    border-radius: 0;
+    color: #4b4f56;
+    font-weight: 700;
+    text-shadow: none;
+    border-color: rgba(0, 0, 0, .4);
+}
+
+.header-buttons {
+    position: absolute;
+    bottom: 1px;
+    right: 15px;
+}
+
+.header-buttons span {
+    padding-left: 6px;
+}
+
+.friend-dropdown {
+    position: absolute;
+    min-width: 108px;
+    border: 1px solid #d3d6db;
+    padding: 6px 0;
+    font-size: 12px;
+    background-color: #fff;
+    visibility: hidden;
+    z-index:1
+}
+
+.friend-dropdown li {
+    color: #1c1e21;
+    cursor: pointer;
+    padding: 0 13px;
+    line-height: 1.5;
+}
+
+.friend-dropdown li:hover{
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.friend-dropdown::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 25%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.friend-dropdown.display-menu {
+    display: block;
+}
+
+.header-buttons:hover .friend-dropdown{
+    visibility: visible;
+}

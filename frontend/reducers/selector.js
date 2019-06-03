@@ -11,20 +11,31 @@ export const getAllProfilePosts = (state, profileId) => {
     return posts;
 };
 
-export const getTopUserFriends = (state, profileId) => {
+export const getUserFriends = (state, profileId, type = "accepted", limit = null) => {
+    let friends = [];
     let friendIds = [];
     if (state.entities.users[profileId]) {
-        friendIds = state.entities.users[profileId].friendIds;
+        switch (type) {
+            case "sent":
+                friendIds = state.entities.users[profileId].sentFriendIds;
+                break;
+            case "received":
+                friendIds = state.entities.users[profileId].receivedFriendIds;
+                break;
+            default:
+                friendIds = state.entities.users[profileId].friendIds;
+                break;
+        }
     }
-    if(friendIds) { 
-        friendIds = friendIds.slice(0,9);
-        friendIds = friendIds.map((id) => {
+    if(friendIds.length > 0) {
+        if (limit) {
+            friendIds = friendIds.slice(0,9);
+        }
+        friendIds.forEach((id) => {
             if (state.entities.users[id]) {
-                return state.entities.users[id];
-            } else {
-                return {}
+               friends.push(state.entities.users[id]);
             }
         });
     }
-    return friendIds
+    return friends;
 }

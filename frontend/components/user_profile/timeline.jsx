@@ -22,9 +22,13 @@ class Timeline extends React.Component {
     render() {
         return (
             <>
-            <TopFriends friends={this.props.friends}/>
-            <CreatePostFormContainer />
-            {/* <PostsIndexContainer /> */}
+            <section className="timeline-sidebar">
+                <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId}/>
+            </section>
+            <section className="timeline-posts">
+                {/* <CreatePostFormContainer /> */}
+                {/* <PostsIndexContainer /> */}
+            </section>
             </>
         );
     }
