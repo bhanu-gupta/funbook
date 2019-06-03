@@ -1,10 +1,12 @@
 import * as AuthApiUtils from '../util/auth_api_util';
+import {merge} from 'lodash';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_LOGIN_ERRORS = 'RECEIVE_LOGIN_ERRORS';
 export const RECEIVE_SIGNUP_ERRORS = 'RECEIVE_SIGNUP_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 export const receiveCurrentUser = (user) => {
     return {
@@ -39,6 +41,13 @@ export const clearErrors = () => {
     }
 };
 
+export const receiveUsers = (users) => {
+    return {
+        type: RECEIVE_USERS,
+        users
+    }
+}
+
 export const login = (userForm) => {
     return (dispatch) => {
         return AuthApiUtils.login(userForm).then(
@@ -64,3 +73,15 @@ export const logout = () => {
         );
     };
 };
+
+export const fetchTimelineData = (userId) => {
+    return (dispatch) => {
+        return AuthApiUtils.fetchTimelineData(userId).then(
+            (userData) => {
+                const {friends, user} = userData;
+                const allUsers = merge({}, friends, {[user.id]: user})
+                return dispatch(receiveUsers(allUsers));
+            }
+        );
+    };
+}

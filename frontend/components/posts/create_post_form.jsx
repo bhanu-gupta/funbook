@@ -11,7 +11,7 @@ class CreatePostForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const userId = this.props.match.params.user_id || this.props.currentUser.id;
+        const userId = this.props.match.params.userId || this.props.currentUser.id;
         const postForm = {
             body: this.state.body,
             userId

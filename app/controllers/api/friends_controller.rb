@@ -1,4 +1,4 @@
-class FriendsController < ApplicationController
+class Api::FriendsController < ApplicationController
     
     def index
         user_id = params[:user_id] || current_user.id 
@@ -11,20 +11,19 @@ class FriendsController < ApplicationController
     end
 
     def create
-        @friend_request = current_user.sent_friend_requests.new(friend_params)
+        @friend_request = current_user.sent_friend_requests.new(receiver_id: params[:user_id])
         if @friend_request.save
-            render json: @friend_request
+            render :friend_request
         else 
             render json: @friend_request.errors.full_messages
         end
     end
 
     def update
-        @friend_request = current_user.received_friend_requests.find_by(id: params[:id])
-        if @friend_request 
-            friend_params[:status] = 'accepted'; 
-            if @friend_request.update(friend_params)
-                render json: @friend_request
+        @friend_request = current_user.received_friend_requests.find_by({requestor_id: params[:user_id]})
+        if @friend_request
+            if @friend_request.update({status: 'accepted'})
+                render :friend_request
             else
                 render json: @friend_request.errors.full_messages, status: 422
             end 
@@ -34,20 +33,15 @@ class FriendsController < ApplicationController
     end
 
     def destroy
-         @friend_request = current_user.received_friend_requests.find_by(id: params[:id])
-        if @friend_request
-            if @friend_request.destroy
-                render json: ['Friend successfully removed']
+        friend_requests = Friend.where('requestor_id=? OR receiver_id=?', params[:user_id], params[:user_id])
+        @friend_request = friend_requests.first
+        if friend_requests
+            if friend_requests.destroy_all
+                render :friend_request
             end
         else 
             render json: [], status: 422
         end
-    end
-
-    private
-
-    def friend_params
-        params.require(:friend).permit(:receiver_id)
     end
 
 end

@@ -39,21 +39,52 @@ class User < ApplicationRecord
     has_many :authored_comments,
         primary_key: :id,
         foreign_key: :author_id,
-        class_name: :User
+        class_name: :Comments
 
-    has_many :received_friend_requests,
-        primary_key: :id,
+    has_many :received_friend_requests, -> { where(status: 'pending').order("friends.created_at") },
+        primary_key: :id, 
         foreign_key: :receiver_id,
-        class_name: :User
+        class_name: :Friend
 
-    has_many :sent_friend_requests,
+    has_many :sent_friend_requests, -> { where(status: 'pending').order("friends.created_at") },
         primary_key: :id,
         foreign_key: :requestor_id,
-        class_name: :User
+        class_name: :Friend
 
     has_many :profile_comments,
         through: :posts,
         source: :comments
+
+    has_many :received_friends,
+        through: :received_friend_requests,
+        source: :requestor
+
+    has_many :sent_friends,
+        through: :sent_friend_requests,
+        source: :receiver
+
+    # has_many :accepted_received_friend_requests, -> { where(status: 'accepted').order("created_at")},
+    #     primary_key: :id, 
+    #     foreign_key: :receiver_id,
+    #     class_name: :Friend
+
+    # has_many :accepted_sent_friend_requests, -> { where(status: 'accepted').order("created_at") },
+    #     primary_key: :id,
+    #     foreign_key: :requestor_id,
+    #     class_name: :Friend
+    
+    # has_many :accepted_received_friends,
+    #     through: :accepted_received_friend_requests,
+    #     source: :requestor
+
+    # has_many :accepted_sent_friends,
+    #     through: :accepted_sent_friend_requests,
+    #     source: :receiver
+    
+    # has_many :friends, -> {
+    #      where(status: 'accepted')
+    #      .order('updated_at DESC') }, 
+    #     class_name: :Friend
 
     def self.find_by_credentials(email, password)
         @user = User.find_by(email: email)
@@ -139,5 +170,9 @@ class User < ApplicationRecord
         rescue => exception
             errors.add(:birthday, 'The selected date is not valid.')
         end
+    end
+
+    def get_all_friend_ids
+        Friend.get_user_friends(self.id, "accepted").pluck(:id)
     end
 end

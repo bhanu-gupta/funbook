@@ -22,3 +22,9 @@ export const getSelectOptions = (start, end, reverseOrder = false, valuesArr = [
     }
     return options;
 }
+
+export const removeValueFromArray = (array, value) => {
+    return array.filter((ele) => {
+        ele != value
+    })
+}

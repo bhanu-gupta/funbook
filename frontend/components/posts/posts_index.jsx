@@ -1,5 +1,5 @@
 import React from 'react';
-import PostsIndexItem from './posts_index_item';
+import PostsIndexItemContainer from './posts_index_item_container';
 
 class PostsIndex extends React.Component {
 
@@ -8,7 +8,7 @@ class PostsIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchProfilePosts(this.props.match.params.user_id);
+        this.fetchProfilePosts(this.props.match.params.userId);
     }
 
     fetchProfilePosts(userId) {
@@ -20,8 +20,8 @@ class PostsIndex extends React.Component {
     }
 
     render() {
-        const allPosts = this.props.posts.map(post => {
-            return <PostsIndexItem key={post.id} post={post}/>;
+        const allPosts = this.props.posts.map((post, idx) => {
+            return <PostsIndexItemContainer key={idx} post={post}/>;
         });
         return (
             <ul>

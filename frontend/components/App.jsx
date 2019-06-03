@@ -11,7 +11,7 @@ const App = () => {
         <div>
             <AuthRoute path="/login" component={LoginPageFormContainer} />
             <AuthRoute path="/signup" component={SignupPageForm} />
-            <Route path="/users/:user_id" component={UserProfileIndex} />
+            <Route path="/users/:userId" component={UserProfileIndex} />
             <AuthRoute exact path="/" component={AuthIndex} />
         </div>
     )

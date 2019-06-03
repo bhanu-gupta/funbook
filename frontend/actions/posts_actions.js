@@ -1,11 +1,11 @@
 import * as PostsAPIUtil from '../util/posts_api_util';
+import { receiveUsers } from '../actions/auth_actions';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
 const receivePosts = (posts) => {
@@ -15,10 +15,11 @@ const receivePosts = (posts) => {
     }
 }
 
-const receivePost = (post) => {
+const receivePost = (post, newPost = false) => {
     return {
         type: RECEIVE_POST,
-        post
+        post,
+        newPost
     }
 }
 
@@ -41,13 +42,6 @@ const handleFetchProfilePosts = (postsData, dispatch) => {
     dispatch(receivePosts(posts));
     dispatch(receiveUsers(users));
     dispatch(receiveComments(comments));
-}
-
-export const receiveUsers = (users) => {
-    return {
-        type: RECEIVE_USERS,
-        users
-    }
 }
 
 export const receiveComments = (comments) => {
@@ -82,7 +76,7 @@ export const fetchFriendPosts = (userId) => {
 export const createPost = (postForm) => {
     return dispatch => {
         return PostsAPIUtil.createPost(postForm).then(
-            (post) => dispatch(receivePost(post)),
+            (post) => dispatch(receivePost(post, true)),
             (errors) => dispatch(receivePostErrors(errors.responseJSON))
         );
     }
