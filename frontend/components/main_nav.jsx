@@ -65,7 +65,9 @@ class MainNav extends React.Component {
                 </div>
                 <ul className="nav-links">
                     <li className="pdg-top">
-                        <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.firstName}</Link>
+                        {this.props.currentUser ? (
+                                <Link to={`/users/${this.props.currentUser.id}`}>{this.props.currentUser.firstName}</Link>
+                        ) : ""}
                     </li>
                     <li className="nav-border pdg-top"><Link to="/">Home</Link></li>
                     <li className="nav-border pdg-top"><Link to="#">Create</Link></li>

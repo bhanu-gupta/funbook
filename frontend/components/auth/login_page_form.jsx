@@ -59,7 +59,7 @@ class LoginPageForm extends React.Component {
                 <main className="main-content">
                     <div className="middle-section">
                         <div className="login_form_section login_bg" >
-                            <h1>Log Into Facebook</h1>
+                            <h1 className="align-center">Log Into Facebook</h1>
                             <form className="login_form_page" onSubmit={this.handleSubmit}>
                                 <div className="input input-box">
                                     <input 
@@ -85,7 +85,7 @@ class LoginPageForm extends React.Component {
                                 <input className="submit" type="submit" value="Log In" />
                                 <a href="#"><span>Forgot account?</span></a>
                                 <span className="login-or">or</span>
-                                <Link to="/signup"><button>Create New Account</button></Link>
+                                <Link to="/signup" className="create-acc-link"><button>Create New Account</button></Link>
                             </form>
                         </div>
                     </div>

@@ -16,13 +16,13 @@
 #
 
 class User < ApplicationRecord
+    validates :first_name, :last_name, :gender, :password_digest, presence: true
     validates :session_token, :email, presence: true, uniqueness: true
-    validates :password_digest, :first_name, :last_name, :gender, presence: true
     validates :first_name, :last_name, format: { with: /\A[a-z]+\z/i, message: 'This name has certain characters that aren\'t allowed.'} 
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'It looks like you may have entered an incorrect email address. Please correct it if necessary, then click to continue.'} 
     validates :password, length: {minimum: 6, message: 'Your password must be at least 6 characters long. Please try another.'}, allow_nil: true
-    validates :gender, inclusion: { in: ['M', 'F'] }
     validates :birth_month, :birth_year, :birth_date, format: { with: /\A[0-9]+\z/, message: 'This date has certain characters that aren\'t allowed.'}, allow_nil: true
+    validates :gender, inclusion: { in: ['M', 'F'] }
     validate :validate_email, :validate_birthday
 
     after_initialize :generate_username, :ensure_session_token

@@ -14,11 +14,7 @@ class FriendRequests extends React.Component {
     componentDidMount() {
         this.props.fetchFriendRequestsData();
     }
-
-    // componentDidUpdate() {
-    //     debugger;
-    // }
-
+    
     toggleRequestType() {
         if (this.state.type === 'sent') {
             this.setState({type: 'received'});

@@ -8,6 +8,7 @@ class SignupForm extends React.Component {
         super(props);
         this.fullDate = getCurrentFullDate();
         this.emailInput = React.createRef();
+        this.form = React.createRef();
         this.errors = {
             first_name: '',
             last_name: '',
@@ -34,7 +35,7 @@ class SignupForm extends React.Component {
                 password: false,
                 email: false,
                 email2: false,
-                gender: ''
+                gender: false
             },
             errorTxt: {
                 field: '',
@@ -49,15 +50,22 @@ class SignupForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let formErrors = false;
-        Object.values(this.state.errorIcons).forEach(element => {
-            if(element === true) {
+        let errorIcons = this.state.errorIcons;
+        Object.keys(this.state.data).forEach((field) => {
+            const errorMsg = this.getCustomErrorMessages(field, this.state.value);
+            if (errorMsg) {
+                if (formErrors === false) {
+                    this.setState({errorTxt: {field: field, value: errorMsg}});
+                }
                 formErrors = true;
-                return;
+                errorIcons[field] = true;
             }
         });
         if (!formErrors) {
             this.props.clearErrors();
             this.props.signup(this.state.data);
+        } else {
+            this.setState({errorIcons: errorIcons})
         }
     }
 
@@ -173,7 +181,7 @@ class SignupForm extends React.Component {
         );
         return (
                 <>
-                <form className="signup_form" onSubmit={this.handleSubmit} ref={this.form}>
+                <form ref={this.form} className="signup_form" onSubmit={this.handleSubmit} ref={this.form}>
                     {allErrors}
                     <div className="name">
                         <div className="input-box">

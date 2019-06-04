@@ -113,3 +113,7 @@ a:hover {
     color: #fff;
     font-weight: bold;
 }
+
+.align-center {
+    text-align: center;
+}
