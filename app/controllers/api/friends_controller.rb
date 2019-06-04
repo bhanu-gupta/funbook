@@ -8,7 +8,11 @@ class Api::FriendsController < ApplicationController
            @friends = Friend.get_user_friends(user_id, "accepted")
         end
         @user = (user_id != current_user.id) ? User.find_by(id: user_id) : current_user
-        render :index
+        if @user
+            render :index
+        else
+             render json: ['User does not exist'], status: 404
+        end
     end
 
     def create

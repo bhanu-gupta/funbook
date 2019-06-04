@@ -7,10 +7,15 @@
     padding-top: 20px;
 }
 
-.friend-requests header {
-
+.friend-requests > ul > li {
+    width: 94%;
 }
 
-.friend-requests ul > li {
-    width: 94%;
+.friend-requests header {
+    padding: 15px;
+}
+
+.friend-requests header  > a {
+    margin: 0;
+    font-size: 11px;
 }

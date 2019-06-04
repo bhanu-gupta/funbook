@@ -1,6 +1,7 @@
 import React from 'react';
 import FriendsIndexItem from './friends_index_item';
 import {Link} from 'react-router-dom';
+import PageNotFound from '../page_not_found';
 
 class FriendsIndex extends React.Component {
 
@@ -37,18 +38,20 @@ class FriendsIndex extends React.Component {
         }
         return (
             <>
-                <section className="friends-section">
-                    <div className="friends-header">
-                        <div className="heading">
-                            <i className="fas fa-user-friends fa-sm friend-icon fa-lg"></i>
-                            <h1>Friends</h1>
+                {this.props.profileInfo ? (
+                    <section className="friends-section">
+                        <div className="friends-header">
+                            <div className="heading">
+                                <i className="fas fa-user-friends fa-sm friend-icon fa-lg"></i>
+                                <h1>Friends</h1>
+                            </div>
+                            {friendButtons}
                         </div>
-                        {friendButtons}
-                    </div>
-                    <ul className="friend-boxes">
-                        {all_friends.length > 0 ? all_friends : 'No Friends to Show'}
-                    </ul>
-                </section>
+                        <ul className="friend-boxes">
+                            {all_friends.length > 0 ? all_friends : <div className="no-content">No Friends to Show</div>}
+                        </ul>
+                    </section>
+                ) : <PageNotFound />}
             </>
         );
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import TopFriends from '../friends/top_friends';
 import PostsIndexContainer from '../posts/posts_index_container';
 import CreatePostFormContainer from '../posts/create_post_form_container';
+import PageNotFound from  '../page_not_found';
 
 class Timeline extends React.Component {
 
@@ -21,15 +22,20 @@ class Timeline extends React.Component {
 
     render() {
         return (
-            <>
-            <section className="timeline-sidebar">
-                <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId}/>
-            </section>
-            <section className="timeline-posts">
-                {/* <CreatePostFormContainer /> */}
-                {/* <PostsIndexContainer /> */}
-            </section>
-            </>
+                <>
+                {this.props.profileInfo ? (
+                    <>
+                    <section className="timeline-sidebar">
+                        <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
+                    </section>
+                    <section className="timeline-posts">
+                        {/* <CreatePostFormContainer /> */}
+                        {/* <PostsIndexContainer /> */}
+                    </section>
+                    </>
+                ): <PageNotFound />}
+                    
+                </>
         );
     }
 }

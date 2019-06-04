@@ -97,3 +97,12 @@
     bottom: 23px;
     right: 10px;
 }
+
+.friends-section .no-content{
+    display: flex;
+    justify-content: center;
+    color: #bbb;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 90px;
+}

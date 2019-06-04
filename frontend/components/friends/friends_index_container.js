@@ -9,7 +9,8 @@ const msp = (state, ownProps) => {
     return {
         currentUser,
         friends: getUserFriends(state, profileId) || {},
-        profileId
+        profileId,
+        profileInfo: state.entities.users[profileId]
     }
 };
 

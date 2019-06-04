@@ -18,7 +18,7 @@ const UserProfileIndex = () => {
                             <Switch>
                                 <ProtectedRoute path="/users/:userId/friends" component={FriendsIndexContainer} />
                                 <ProtectedRoute exact path="/users/:userId" component={TimelineContainer} />
-                                <Route path="/users/:userId/timeline" component={TimelineContainer} />
+                                <ProtectedRoute path="/users/:userId/timeline" component={TimelineContainer} />
                             </Switch>
                         </div>
                     </div>
