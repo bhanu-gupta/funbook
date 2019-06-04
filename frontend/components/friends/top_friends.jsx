@@ -6,7 +6,7 @@ const TopFriends = ({ friends, profileId}) => {
         return (
             <li key={idx}>
                 <Link to={`/users/${friend.id}`}>
-                    <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-1/c0.0.320.320a/p320x320/59879565_2633165793364506_8537714378160472064_n.jpg?_nc_cat=103&_nc_ht=scontent-lga3-1.xx&oh=25d24516e30adec17f73daa2466d4507&oe=5D5203EC" />
+                    <img src={friend.profilePhoto} />
                 </Link>
                 <span>{friend.firstName}</span>
             </li>

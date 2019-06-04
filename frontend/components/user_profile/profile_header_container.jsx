@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ProfileHeader from './profile_header';
 import {withRouter} from 'react-router-dom';
+import {updateUserInfo} from '../../actions/auth_actions';
 
 const msp = (state, ownProps) => {
     const currentUserId = state.session.currentUserId;
@@ -10,4 +11,10 @@ const msp = (state, ownProps) => {
         currentUser: state.entities.users[currentUserId]
     }
 };
-export default withRouter(connect(msp)(ProfileHeader));
+
+const mdp = (dispatch) => {
+    return {
+        updateUserInfo: (formData) => dispatch(updateUserInfo(formData)),
+    }
+}
+export default withRouter(connect(msp, mdp)(ProfileHeader));

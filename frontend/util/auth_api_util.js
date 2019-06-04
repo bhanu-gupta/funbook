@@ -27,3 +27,13 @@ export const fetchTimelineData = (userId) => {
         url: `/api/users/${userId}`
     })
 }
+
+export const updateUserInfo = (formData) => {
+    return $.ajax({
+        method: 'PATCH',
+        url: '/api/users',
+        data: formData,
+        contentType: false,
+        processData: false
+    });
+}

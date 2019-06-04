@@ -63,6 +63,10 @@ class User < ApplicationRecord
         through: :sent_friend_requests,
         source: :receiver
 
+    has_one_attached :profile_photo
+
+    has_one_attached :cover_photo
+
     # has_many :accepted_received_friend_requests, -> { where(status: 'accepted').order("created_at")},
     #     primary_key: :id, 
     #     foreign_key: :receiver_id,

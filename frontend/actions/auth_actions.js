@@ -85,3 +85,11 @@ export const fetchTimelineData = (userId) => {
         );
     };
 }
+
+export const updateUserInfo = (formData) => {
+    return (dispatch) => {
+        return AuthApiUtils.updateUserInfo(formData).then(
+            (user) => dispatch(receiveCurrentUser(user))
+        );
+    };
+}

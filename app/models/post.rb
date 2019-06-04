@@ -21,4 +21,6 @@ class Post < ApplicationRecord
         class_name: :User
     
     has_many :comments
+
+    has_one_attached :photo
 end
