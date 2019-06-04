@@ -52,7 +52,7 @@ class SignupForm extends React.Component {
         let formErrors = false;
         let errorIcons = this.state.errorIcons;
         Object.keys(this.state.data).forEach((field) => {
-            const errorMsg = this.getCustomErrorMessages(field, this.state.value);
+            const errorMsg = this.getCustomErrorMessages(field, this.state.data[field]);
             if (errorMsg) {
                 if (formErrors === false) {
                     this.setState({errorTxt: {field: field, value: errorMsg}});
