@@ -25,7 +25,7 @@ function Modal({ modal, closeModal }) {
 }
 
 const modalChildClick = (e) => { 
-    if (modal === 'create-post' && e.target.id !== 'close-btn') {
+    if (e.target.id !== 'close-btn') {
         e.stopPropagation();
     }
 }

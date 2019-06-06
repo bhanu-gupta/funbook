@@ -123,6 +123,7 @@ a:hover {
     cursor: pointer;
     padding: 0 13px;
     line-height: 1.5;
+    list-style-type: none;
 }
 
 .bottom-dropdown li:hover{
@@ -133,7 +134,7 @@ a:hover {
 .bottom-dropdown::after {
     content: " ";
     position: absolute;
-    bottom: 100%;  /* At the top of the tooltip */
+    bottom: 100%;
     left: 25%;
     margin-left: -5px;
     border-width: 7px;
@@ -149,4 +150,15 @@ a:hover {
     font-size: 12px;
     background-color: #fff;
     z-index:1
+}
+
+.bottom-dropdown:before {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 25%;
+    margin: 0px 0px 1px -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #d3d6db transparent;
 }

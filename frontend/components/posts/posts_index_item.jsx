@@ -4,8 +4,15 @@ import {Link} from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 
 const PostsIndexItem = (props) => {
-    const {body, createdAt, id} = props.post;
+    const {body, createdAt, id, photoUrls} = props.post;
     const {author, user, comments} = props;
+    const all_photos = photoUrls ? photoUrls.slice(0, 5).map((photoUrl, idx) => {
+        return (
+            <figure key={idx}>
+                <img src={photoUrl}/>
+            </figure>
+        );
+    }) : "";
     return (
         <li className="section-box">
             <section className="single-post">
@@ -31,6 +38,9 @@ const PostsIndexItem = (props) => {
                 </div>
                 <div className="post-body">{body}</div>
             </section>
+            <div className="post-photo-gallery">
+                {all_photos}
+            </div>
             <CommentsIndex comments={comments} postId={id} isFriend={props.isFriend}/>
         </li>
     );

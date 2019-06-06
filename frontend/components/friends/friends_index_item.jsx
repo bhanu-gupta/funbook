@@ -3,6 +3,7 @@ import FriendshipButtonContainer from './friendship_buttons_container';
 import {Link} from 'react-router-dom';
 
 const FriendsIndexItem = ({friend, currentUser}) => {
+    const friendNum = friend.friendIds ? friend.friendIds.length : 0;
     return (
         <li>
             <figure className="profile-img">
@@ -15,7 +16,7 @@ const FriendsIndexItem = ({friend, currentUser}) => {
                     <span className="friend-name">{`${friend.firstName} ${friend.lastName}`}</span>
                 </Link>
                 <Link to={`/users/${friend.id}/friends`}>
-                    <span>{`${friend.friendIds.length} friends`}</span>
+                    <span>{`${friendNum} friends`}</span>
                 </Link>
             </div>
             <FriendshipButtonContainer profileId={friend.id} currentUser={currentUser}/>
