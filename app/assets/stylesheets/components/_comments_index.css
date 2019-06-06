@@ -1,0 +1,129 @@
+.all-comments {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    width: 100%;
+    color: #1c1e21;
+}
+
+.all-comments .comment-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #606770;
+    margin-right: 12px;
+}
+
+.comments-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 12px;
+    padding: 4px 0;
+    height: 32px;
+    border-top: 1px solid #dadde1;
+    border-bottom: 1px solid #dadde1;
+}
+
+.comments-nav li span {
+    font-weight: 600;
+    transition: 400ms cubic-bezier(.08,.52,.52,1) transform;
+    color: #626972;
+}
+
+.comments-nav i {
+    margin-right: 6px;
+}
+
+.all-comments .single-comment li {
+    padding-top: 8px;
+}
+
+.single-comment li .profile-pic img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.single-comment li .profile-pic {
+    margin: -11px 6px 0 0 ;
+    
+}
+
+.single-comment .comment-info {
+    display: flex;
+    align-items: center;
+}
+
+.single-comment  li {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 12px 8px 12px;
+}
+
+.single-comment li .profile-pic a {
+    margin-left: 0;
+}
+
+.comment-info .comment-dropdown {
+    position: absolute;
+    right: -76px;
+    font-weight: normal;
+    top: 25px;
+}
+
+.comment-info .comment-dropdown li{
+    padding-top:0;
+    padding-bottom: 0;
+}
+
+.comment-body {
+    background-color: #f2f3f5;
+    border-radius: 16px;
+    padding:8px 12px;
+    overflow: hidden;
+    font-size: 13px;
+    overflow-wrap: break-word;
+}
+
+.comment-text .comment-author {
+    font-weight: 700;
+    margin-right: 5px;
+    font-size: 13px;
+    margin-left:0;
+}
+
+.comment-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-info .more-actions a:hover{
+    text-decoration: none;
+}
+
+.comment-info .more-actions {
+    display:none;
+    margin: 0 0 5px 5px;
+    font-weight: bold;
+    color: #C0C2C7;
+}
+
+.comment-info .more-actions:hover {
+    color: #606770;
+}
+
+.reply-comment {
+    margin-top: -10px;
+    padding: 8px 0 0 54px;
+}
+
+.single-comment li:hover .more-actions {
+    display: block;
+}
+
+.single-comment li .comment-display {
+    display: flex;
+    position: relative;
+}

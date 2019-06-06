@@ -11,7 +11,7 @@
 #
 
 class Post < ApplicationRecord
-    validates :body, :author_id, :user_id, presence: true
+    validates :author_id, :user_id, presence: true
 
     belongs_to :user
 
@@ -20,7 +20,7 @@ class Post < ApplicationRecord
         foreign_key: :author_id,
         class_name: :User
     
-    has_many :comments
+    has_many :comments,  -> { order("comments.created_at ASC") }
 
-    has_one_attached :photo
+    has_many_attached :photos
 end

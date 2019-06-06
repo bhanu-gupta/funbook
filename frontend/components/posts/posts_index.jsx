@@ -11,6 +11,12 @@ class PostsIndex extends React.Component {
         this.fetchProfilePosts(this.props.match.params.userId);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.profileId != prevProps.profileId) {
+            this.fetchProfilePosts(this.props.match.params.userId);
+        }
+    }
+
     fetchProfilePosts(userId) {
         if (this.props.currentUser.id === userId) {
             this.props.fetchMyPosts();
@@ -21,12 +27,12 @@ class PostsIndex extends React.Component {
 
     render() {
         const allPosts = this.props.posts.map((post, idx) => {
-            return <PostsIndexItemContainer key={idx} post={post}/>;
+            return <PostsIndexItemContainer key={idx} post={post} isFriend={this.props.isFriend}/>;
         });
         return (
-            <ul>
-                {allPosts}
-            </ul>
+                <ul className="all-posts">
+                    {allPosts}
+                </ul>
         );
     }
 }

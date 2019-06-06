@@ -117,3 +117,36 @@ a:hover {
 .align-center {
     text-align: center;
 }
+
+.bottom-dropdown li {
+    color: #1c1e21;
+    cursor: pointer;
+    padding: 0 13px;
+    line-height: 1.5;
+}
+
+.bottom-dropdown li:hover{
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.bottom-dropdown::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 25%;
+    margin-left: -5px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.bottom-dropdown {
+    position: absolute;
+    min-width: 108px;
+    border: 1px solid #d3d6db;
+    padding: 6px 0;
+    font-size: 12px;
+    background-color: #fff;
+    z-index:1
+}

@@ -3,9 +3,9 @@ class Api::FriendsController < ApplicationController
     def index
         user_id = params[:user_id] || current_user.id 
         if params[:type] == 'requests'
-            @friends = Friend.get_user_friends(user_id, "pending")
+            @friends = User.get_user_friends(user_id, "pending")
         else
-           @friends = Friend.get_user_friends(user_id, "accepted")
+           @friends = User.get_user_friends(user_id, "accepted")
         end
         @user = (user_id != current_user.id) ? User.find_by(id: user_id) : current_user
         if @user

@@ -1,12 +1,12 @@
 import * as PostsAPIUtil from '../util/posts_api_util';
 import { receiveUsers } from '../actions/auth_actions';
+import {receiveComments} from './comments_actions';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
 const receivePosts = (posts) => {
     return {
@@ -39,16 +39,9 @@ const receivePostErrors = (errors) => {
 
 const handleFetchProfilePosts = (postsData, dispatch) => {
     const {posts, comments, users} = postsData;
-    dispatch(receivePosts(posts));
-    dispatch(receiveUsers(users));
-    dispatch(receiveComments(comments));
-}
-
-export const receiveComments = (comments) => {
-    return {
-        type: RECEIVE_COMMENTS,
-        comments
-    }
+    if (posts) dispatch(receivePosts(posts));
+    if (users) dispatch(receiveUsers(users));
+    if (comments) dispatch(receiveComments(comments));
 }
 
 export const clearErrors = () => {

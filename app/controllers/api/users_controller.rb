@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
             @user = User.find_by(id: user_id)
         end
         @user = (user_id != current_user.id) ? User.find_by(id: user_id) : current_user
-        @top_friends = Friend.get_top_friends(user_id)
+        @top_friends = User.get_top_friends(user_id)
         render :show
     end
 

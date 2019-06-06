@@ -39,7 +39,7 @@ class User < ApplicationRecord
     has_many :authored_comments,
         primary_key: :id,
         foreign_key: :author_id,
-        class_name: :Comments
+        class_name: :Comment
 
     has_many :received_friend_requests, -> { where(status: 'pending').order("friends.created_at") },
         primary_key: :id, 
@@ -177,6 +177,20 @@ class User < ApplicationRecord
     end
 
     def get_all_friend_ids
-        Friend.get_user_friends(self.id, "accepted").pluck(:id)
+        User.get_user_friends(self.id, "accepted").pluck(:id)
+    end
+
+    def self.get_user_friends(user_id, status = null)
+        friends = User.with_attached_profile_photo.with_attached_cover_photo.joins("INNER JOIN friends 
+                            ON (friends.requestor_id = users.id 
+                            OR friends.receiver_id = users.id)")
+                    .where("(requestor_id = ? OR receiver_id = ?) 
+                    AND users.id != ?", user_id, user_id, user_id)
+        friends = friends.where('friends.status = ?', status) if status
+        friends = friends.distinct
+    end
+
+    def self.get_top_friends(user_id)
+        User.get_user_friends(user_id, "accepted").limit(9)
     end
 end

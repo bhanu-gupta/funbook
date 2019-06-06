@@ -20,7 +20,7 @@ class FriendshipButtons extends React.Component {
                         <span>Friends</span>
 
                     </button>
-                    <ul className="friend-dropdown">
+                    <ul className="bottom-dropdown friend-dropdown">
                         <li onClick={this.removeFriend}>Unfriend</li>
                     </ul>
                 </>
@@ -37,7 +37,7 @@ class FriendshipButtons extends React.Component {
                         <i className="fas fa-user-plus"></i>
                         <span>Friend Request Sent</span>
                     </button>
-                    <ul className="friend-dropdown">
+                    <ul className="bottom-dropdown friend-dropdown">
                         <li onClick={this.removeFriend}>Cancel Request</li>
                     </ul>
                 </>
@@ -48,7 +48,7 @@ class FriendshipButtons extends React.Component {
                         <i className="fas fa-user-plus"></i>
                         <span>Respond to Friend Request</span>
                     </button>
-                    <ul className="friend-dropdown">
+                    <ul className="bottom-dropdown friend-dropdown">
                         <li onClick={this.addFriend}>Confirm</li>
                         <li onClick={this.removeFriend}>Delete Request</li>
                     </ul>

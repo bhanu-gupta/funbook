@@ -21,6 +21,13 @@ class Timeline extends React.Component {
     }
 
     render() {
+        const {profileInfo, currentUser} = this.props;
+        let isFriend = false;
+        if (this.props.match.params.userId == currentUser.id) {
+            isFriend = true;
+        } else if (profileInfo && profileInfo.friendIds && profileInfo.friendIds.includes(currentUser.id)) {
+            isFriend = true;
+        }
         return (
                 <>
                 {this.props.profileInfo ? (
@@ -29,8 +36,8 @@ class Timeline extends React.Component {
                         <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
                     </section>
                     <section className="timeline-posts">
-                        {/* <CreatePostFormContainer /> */}
-                        {/* <PostsIndexContainer /> */}
+                        {isFriend ? <CreatePostFormContainer profileId={this.props.match.params.userId} /> : ""}
+                        <PostsIndexContainer isFriend={isFriend}/>
                     </section>
                     </>
                 ): <PageNotFound />}

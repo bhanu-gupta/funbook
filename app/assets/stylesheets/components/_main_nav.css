@@ -58,7 +58,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-top: 6px;
+    margin-top: 5px;
     width: 200px;
     z-index: 1;
     /* overflow-y: scroll; */
@@ -79,8 +79,9 @@
 
 .main-header ul.dropdown-nav li{
     color: #1d2129;
-    padding: 5px 0 2px 20px;
+    padding: 4px 0 2px 20px;
     font-size: 12px;
+    border: 1px solid #fff;
 }
 
 .dropdown-nav .separator {

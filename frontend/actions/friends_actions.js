@@ -40,7 +40,7 @@ export const fetchFriendsfriends = (userId) => {
         return FriendsAPIUtil.fetchFriendsfriends(userId).then(
             (userData) => {
                 const { friends, user } = userData;
-                const allUsers = merge({}, friends, { [user.id]: user })
+                const allUsers = user ? merge({}, friends, { [user.id]: user }) : friends;
                 return dispatch(receiveUsers(allUsers));
             }
         );
@@ -52,7 +52,7 @@ export const fetchMyFriends = () => {
         return FriendsAPIUtil.fetchMyFriends().then(
             (userData) => {
                 const { friends, user } = userData;
-                const allUsers = merge({}, friends, { [user.id]: user })
+                const allUsers = user ? merge({}, friends, { [user.id]: user }) : friends;
                 return dispatch(receiveUsers(allUsers));
             }
         );
@@ -64,7 +64,7 @@ export const fetchFriendRequestsData = () => {
         return FriendsAPIUtil.fetchFriendRequestsData().then(
             (userData) => {
                 const { friends, user } = userData;
-                const allUsers = merge({}, friends, { [user.id]: user })
+                const allUsers = user ? merge({}, friends, { [user.id]: user }): friends;
                 return dispatch(receiveUsers(allUsers));
             }
         );

@@ -1,5 +1,7 @@
 import {RECEIVE_POST, RECEIVE_POSTS, REMOVE_POST} from '../actions/posts_actions';
 import {merge} from 'lodash';
+import { REMOVE_COMMENT, RECEIVE_COMMENT } from '../actions/comments_actions';
+import { removeValueFromArray } from '../util/helper_util';
 
 export default (state = {}, action) => {
     Object.freeze(state);
@@ -12,6 +14,23 @@ export default (state = {}, action) => {
             let newState = merge({}, oldState);
             delete newState[action.postId];
             return newState;
+        case RECEIVE_COMMENT:
+            if (action.newComment) {
+                const postId = action.comment.postId;
+                return merge({}, state, {
+                    [postId]: {
+                        commentIds: (state[postId].commentIds).concat([action.comment.id])
+                    }
+                });
+            }
+        case REMOVE_COMMENT:
+            const postId = action.comment.postId;
+            const commentIds = removeValueFromArray(state[postId].commentIds, action.comment.id);
+            return merge({}, state, {
+                [postId]: {
+                    commentIds
+                }
+            });
         default:
             return state;
     }

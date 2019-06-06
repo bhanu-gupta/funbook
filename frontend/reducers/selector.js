@@ -1,8 +1,8 @@
 export const getAllProfilePosts = (state, profileId) => {
     let timelinePostIds = state.entities.users[profileId].postIds || [];
     const posts = [];
-    if (timelinePostIds && state.entities.posts.length > 0) {
-        timelinePostIds.foreach((id) => {
+    if (timelinePostIds.length > 0 && state.entities.posts) {
+        timelinePostIds.forEach((id) => {
             if (state.entities.posts[id]) {
                 posts.push(state.entities.posts[id]);
             }
@@ -27,7 +27,7 @@ export const getUserFriends = (state, profileId, type = "accepted", limit = null
                 break;
         }
     }
-    if(friendIds.length > 0) {
+    if (friendIds && friendIds.length > 0) {
         if (limit) {
             friendIds = friendIds.slice(0,9);
         }
@@ -38,4 +38,32 @@ export const getUserFriends = (state, profileId, type = "accepted", limit = null
         });
     }
     return friends;
+}
+
+export const getAllPostComments = (state, postId) => {
+    let postCommentIds = state.entities.posts[postId].commentIds;
+    let comments = {};
+    if (postCommentIds.length > 0 && state.entities.comments) {
+        postCommentIds.forEach((id) => {
+            if (state.entities.comments[id]) {
+                const comment = state.entities.comments[id];
+                if (!comment.parentId) {
+                    if(comments[comment.id]) {
+                        comment.subComments = comments[comment.id].subComments;
+                    } else {
+                        comment.subComments = [];
+                    }
+                    comments[comment.id] = comment;
+                } else {
+                    comment.subComments = [];
+                    if (comments[comment.parentId]) {
+                        comments[comment.parentId].subComments.push(comment);
+                    } else {
+                        comments[comment.parentId]= {subComments: [comment]};
+                    }
+                }
+            }
+        })
+    }
+    return comments;
 }

@@ -2,7 +2,7 @@ class Api::PostsController < ApplicationController
 
     def index
         user_id = params[:user_id] || current_user.id 
-        @posts = Post.includes([:author, comments: [:author, :parent_comment]]).where(user_id: user_id).order("created_at DESC")
+        @posts = Post.with_attached_photos.includes([:author, comments: [:author, :parent_comment]]).where(user_id: user_id)
         render :index
     end
 
@@ -43,6 +43,6 @@ class Api::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:body, :user_id)
+        params.require(:post).permit(:body, :user_id, photos: [])
     end
 end

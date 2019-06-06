@@ -50,13 +50,29 @@
 }
 
 .sidebar-section li img {
-    width: 100%;
-    min-height: initial;
-    height: auto;
+    height: 100%;
+    width: auto;
+    min-width: initial;
 }
 
 .timeline-sidebar a{
     text-decoration: none;
     font-size:16px;
     color: #1c1e21;
+}
+.section-box {
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 516px;
+}
+
+.section-box li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.timeline-posts {
+    width: 516px;
 }

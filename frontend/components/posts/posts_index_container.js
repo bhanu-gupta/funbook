@@ -9,7 +9,9 @@ const msp = (state, ownProps) => {
     const profileId = ownProps.match.params.userId || currentUser.id;
     return {
         currentUser,
-        posts: getAllProfilePosts(state, profileId) || {}
+        posts: getAllProfilePosts(state, profileId) || {},
+        profileId,
+        isFriend: ownProps.isFriend
     }
 };
 

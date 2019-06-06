@@ -12,17 +12,13 @@ export const fetchMyPosts = () => {
     });
 }
 
-export const createPost = (postForm) => {
-    const {body, userId} = postForm;
+export const createPost = (formData) => {
     return $.ajax({
         method: 'POST',
         url: 'api/posts/',
-        data: {
-            post: {
-                body: body,
-                user_id: userId
-            }
-        }
+        data: formData,
+        contentType: false,
+        processData: false
     });
 }
 

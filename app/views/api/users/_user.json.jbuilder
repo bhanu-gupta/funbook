@@ -1,5 +1,6 @@
 json.key_format! camelize: :lower
-json.extract! user, :id, :username, :email, :first_name, :last_name, :gender, :birthday, :post_ids
+json.extract! user, :id, :username, :email, :first_name, :last_name, :gender, :birthday
+json.postIds user.post_ids.reverse!
 json.friend_ids user.get_all_friend_ids
 json.profilePhoto url_for(user.profile_photo) if user.profile_photo.attached?
 json.coverPhoto url_for(user.cover_photo) if user.cover_photo.attached?

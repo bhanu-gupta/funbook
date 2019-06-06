@@ -79,7 +79,10 @@ export const fetchTimelineData = (userId) => {
         return AuthApiUtils.fetchTimelineData(userId).then(
             (userData) => {
                 const {friends, user} = userData;
-                const allUsers = merge({}, friends, {[user.id]: user})
+                let allUsers = {};
+                if (user) {
+                    allUsers = merge({}, friends, {[user.id]: user})
+                }
                 return dispatch(receiveUsers(allUsers));
             }
         );
