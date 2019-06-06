@@ -10,7 +10,7 @@ export default (state = {}, action) => {
             return merge({}, state, { [action.comment.id]: action.comment })
         case REMOVE_COMMENT:
             let newState = merge({}, state);
-            delete newState[action.commentId];
+            delete newState[action.comment.id];
             return newState;
         default:
             return state;

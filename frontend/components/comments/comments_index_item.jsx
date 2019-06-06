@@ -30,8 +30,8 @@ class CommentsIndexItem extends React.Component {
         const {comment, author, currentUser} = this.props;
         let subComments = [];
         if (comment.subComments && comment.subComments.length > 0) {
-            subComments = comment.subComments.map((subComment) => {
-                return <CommentsIndexItemContainer key={subComment.id} comment={subComment} isFriend={this.props.isFriend}/>
+            subComments = comment.subComments.map((subComment, idx) => {
+                return <CommentsIndexItemContainer key={idx} comment={subComment} isFriend={this.props.isFriend}/>
             })
         }
         let replyCommentForm = [];
@@ -86,12 +86,12 @@ class CommentsIndexItem extends React.Component {
                                 {this.props.isFriend ? (
                                     <>
                                         <span><Link to="#">Like</Link></span>
-                                        <span>.</span>
+                                        <span className="separator">.</span>
                                         <span><Link to="#">Reply</Link></span>
-                                        <span>.</span>
+                                        <span className="separator">.</span>
                                     </>
                                 ) : ""}
-                                <span>{formatDate(comment.createdAt)}</span>
+                                <span><Link to="#">{formatDate(comment.createdAt)}</Link></span>
                             </div>
                         </div>
                     </div>

@@ -56,10 +56,12 @@ export const getAllPostComments = (state, postId) => {
                     comments[comment.id] = comment;
                 } else {
                     comment.subComments = [];
-                    if (comments[comment.parentId]) {
-                        comments[comment.parentId].subComments.push(comment);
-                    } else {
-                        comments[comment.parentId]= {subComments: [comment]};
+                    if(state.entities.comments[comment.parentId]) {
+                        if (comments[comment.parentId]) {
+                            comments[comment.parentId].subComments.push(comment);
+                        } else {
+                            comments[comment.parentId] = { subComments: [comment] };
+                        }
                     }
                 }
             }
