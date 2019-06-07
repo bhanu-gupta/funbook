@@ -11,7 +11,7 @@ const msp = (state, ownProps) => {
         currentUser,
         posts: getAllProfilePosts(state, profileId) || {},
         profileId,
-        isFriend: ownProps.isFriend
+        isFriend: ownProps.isFriend || true
     }
 };
 

@@ -1,3 +1,5 @@
+import {getUniqueArrayValues} from '../util/helper_util';
+ 
 export const getAllProfilePosts = (state, profileId) => {
     let timelinePostIds = state.entities.users[profileId].postIds || [];
     const posts = [];
@@ -31,6 +33,7 @@ export const getUserFriends = (state, profileId, type = "accepted", limit = null
         if (limit) {
             friendIds = friendIds.slice(0,9);
         }
+        friendIds = getUniqueArrayValues(friendIds);
         friendIds.forEach((id) => {
             if (state.entities.users[id]) {
                friends.push(state.entities.users[id]);

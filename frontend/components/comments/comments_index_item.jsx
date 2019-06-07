@@ -46,7 +46,7 @@ class CommentsIndexItem extends React.Component {
                 <li>
                     <div className="comment-info">
                         <figure className="profile-pic">
-                            <Link to={`/users/${author.id}`}><img src={author.profilePhoto} /></Link>
+                            <Link to={`/users/${author.id}`}><img src={author.profilePhoto ? author.profilePhoto : window.defaultUser} /></Link>
                         </figure>
                         <div className="comment-text">
                             <div className="comment-display">

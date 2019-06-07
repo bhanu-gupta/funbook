@@ -8,7 +8,7 @@ const FriendsIndexItem = ({friend, currentUser}) => {
         <li>
             <figure className="profile-img">
                 <Link to={`/users/${friend.id}`}>
-                    <img src={friend.profilePhoto} />
+                    <img src={friend.profilePhoto ? friend.profilePhoto : window.defaultUser} />
                 </Link>
             </figure>
             <div className="friend-info">

@@ -1,16 +1,17 @@
 import {connect} from 'react-redux';
-import FeedsIndex from './feeds_index';
+import NewsFeedIndex from './news_feed_index';
+
 
 const msp = state => {
     return {
 
-    };
-};
+    }
+}
 
 const mdp = dispatch => {
     return {
-        
-    };
-};
 
-export default connect(msp, mdp)(FeedsIndex);
+    }
+}
+
+export default connect(msp, mdp)(NewsFeedIndex);

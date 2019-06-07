@@ -1,8 +1,14 @@
 class Api::PostsController < ApplicationController
 
     def index
-        user_id = params[:user_id] || current_user.id 
-        @posts = Post.with_attached_photos.includes([:author, comments: [:author, :parent_comment]]).where(user_id: user_id)
+        user_id = params[:user_id] || current_user.id
+        if (params[:user_id]) 
+            @posts = Post.with_attached_photos.includes([:author, comments: [:author, :parent_comment]]).where(user_id: params[:user_id])
+        else
+            friend_ids = current_user.get_all_friend_ids
+            friend_ids.push(current_user.id)
+            @posts = Post.with_attached_photos.includes([:author, comments: [:author, :parent_comment]]).where(user_id: friend_ids)
+        end
         render :index
     end
 

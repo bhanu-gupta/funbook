@@ -6,7 +6,7 @@ const TopFriends = ({ friends, profileId}) => {
         return (
             <li key={idx}>
                 <Link to={`/users/${friend.id}`}>
-                    <img src={friend.profilePhoto} />
+                    <img src={friend.profilePhoto ? friend.profilePhoto : window.defaultUser} />
                 </Link>
                 <span>{friend.firstName}</span>
             </li>

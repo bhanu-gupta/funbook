@@ -52,7 +52,7 @@ class CommentForm extends React.Component {
                     <li>
                         <div className="comment-form">
                             <figure className="profile-pic">
-                                <Link to={`/users/${currentUser.id}`}><img src={currentUser.profilePhoto} /></Link>
+                                <Link to={`/users/${currentUser.id}`}><img src={currentUser.profilePhoto ? currentUser.profilePhoto : window.defaultUser} /></Link>
                             </figure>
                             <form>
                                 <textarea

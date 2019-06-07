@@ -18,7 +18,7 @@ const PostsIndexItem = (props) => {
             <section className="single-post">
                 <div className="post-text">
                     <figure className="profile-pic">
-                        <Link to={`/users/${author.id}`}><img src={author.profilePhoto} /></Link>
+                        <Link to={`/users/${author.id}`}><img src={author.profilePhoto ? author.profilePhoto : window.defaultUser} /></Link>
                     </figure>
                     <div className="post-info">
                         <div className="post-user">

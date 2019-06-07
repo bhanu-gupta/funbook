@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import FeedsIndexContainer from '../components/feeds/feeds_index_container';
+import NewsFeedContainer from '../components/news_feed/news_feed_container';
 
 const msp = state => ({
     loggedIn: Boolean(state.session.currentUserId),
@@ -11,7 +11,7 @@ const Auth = ({ loggedIn, path, component: Component }) => {
     return (
         <Route exact path={path}
             render={props => (
-                loggedIn ? <FeedsIndexContainer {...props} />: <Component {...props} />
+                loggedIn ? <NewsFeedContainer {...props} />: <Component {...props} />
             )}
         />
     )

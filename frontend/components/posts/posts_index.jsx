@@ -8,20 +8,16 @@ class PostsIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchProfilePosts(this.props.match.params.userId);
+        if (!this.props.match.params.userId) {
+            this.props.fetchMyPosts(this.props.currentUser.id);
+        } else {
+            this.props.fetchFriendPosts(this.props.match.params.userId);
+        }
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.profileId != prevProps.profileId) {
-            this.fetchProfilePosts(this.props.match.params.userId);
-        }
-    }
-
-    fetchProfilePosts(userId) {
-        if (this.props.currentUser.id === userId) {
-            this.props.fetchMyPosts();
-        } else {
-            this.props.fetchFriendPosts(userId);
+            this.props.fetchFriendPosts(this.props.match.params.userId);
         }
     }
 

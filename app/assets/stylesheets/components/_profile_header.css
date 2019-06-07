@@ -77,6 +77,8 @@
     flex-direction: column;
     height:100%;
     padding-right: 16px;
+    margin: 0 auto;
+    padding-left: 10px;
 }
 
 .add-photo:hover {

@@ -20,6 +20,22 @@ class ProfileHeader extends React.Component {
         this.handleFile = this.handleFile.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.userId != prevProps.match.params.userId) {
+            const { profilePhoto = null, coverPhoto = null } = this.props;
+            this.setState({
+                profile_photo: {
+                    url: profilePhoto,
+                    file: null
+                },
+                cover_photo: {
+                    url: coverPhoto,
+                    file: null
+                }
+            })
+        }
+    }
+
     handleFile(field) {
         return (e) => {
             const file = e.currentTarget.files[0];
@@ -55,7 +71,7 @@ class ProfileHeader extends React.Component {
                         </div>
                         ) : ""}
                         <a>
-                            <img className="profile-pic" src={profile_preview} />
+                            <img className="profile-pic" src={profile_preview ? profile_preview : window.defaultUser} />
                         </a>
                         {profileInfo.id === currentUser.id ? (
                             <>

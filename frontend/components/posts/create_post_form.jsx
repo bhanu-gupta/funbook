@@ -96,7 +96,7 @@ class CreatePostForm extends React.Component {
                 <form className="post-body" onSubmit={this.handleSubmit}>
                     <div className="post-text">
                         <figure className="profile-pic">
-                            <img src={this.props.currentUser.profilePhoto} />
+                            <img src={this.props.currentUser.profilePhoto ? this.props.currentUser.profilePhoto : window.defaultUser} />
                         </figure>
                         <textarea 
                             name="body" 
