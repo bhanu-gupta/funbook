@@ -1,8 +1,8 @@
 .post-text img {
-    width: 40px;
+    width: auto;
     height: 40px;
     border-radius: 50%;
-    overflow: hidden;
+    min-width: initial;
 }
 
 .post-text {
@@ -18,6 +18,13 @@
 
 .post-text .profile-pic {
     margin: -6px 0 0 12px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
 }
 
 .all-posts .single-post {

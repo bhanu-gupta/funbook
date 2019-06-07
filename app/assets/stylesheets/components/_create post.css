@@ -117,6 +117,7 @@
     border: 2px solid #fff;
     align-items: center;
     color: #ccc;
+    border: 1px solid #777;
 }
 
 .create-post li .gallery-photo.add-more-photos {

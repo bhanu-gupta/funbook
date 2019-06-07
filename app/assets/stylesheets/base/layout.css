@@ -162,3 +162,7 @@ a:hover {
     border-style: solid;
     border-color: transparent transparent #d3d6db transparent;
 }
+
+.profile-pic a{
+    margin-left: 0;
+}

@@ -41,15 +41,20 @@
 }
 
 .single-comment li .profile-pic img{
-    width: 32px;
+    width: auto;
     height: 32px;
     border-radius: 50%;
-    overflow: hidden;
 }
 
 .single-comment li .profile-pic {
-    margin: -11px 6px 0 0 ;
-    
+    margin: -26px 6px 0 0 ;
+    width:32px;
+    height: 32px;
+    text-align:center;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
 }
 
 .single-comment .comment-info {

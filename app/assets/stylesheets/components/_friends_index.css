@@ -70,16 +70,22 @@
     height: 100px;
     margin: 0;
     margin-right: 10px;
+    text-align: center;
+    overflow:hidden;
+
 }
 
 .friend-boxes li .profile-img img {
-    width: 100%;
-    height: auto;
-    min-height: initial;
+    height: 100px;
+    width: auto;
+    min-width: initial;
 }
 
 .friend-boxes li .profile-img a {
     margin-left: 0;
+    width: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 .friend-boxes .friend-info {

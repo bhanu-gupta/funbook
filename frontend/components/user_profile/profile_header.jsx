@@ -70,16 +70,18 @@ class ProfileHeader extends React.Component {
                                 </i>
                         </div>
                         ) : ""}
-                        <a>
-                            <img className="profile-pic" src={profile_preview ? profile_preview : window.defaultUser} />
-                        </a>
+                        <figure className="photo-box">
+                            <a>
+                                <img className="profile-pic" src={profile_preview ? profile_preview : window.defaultUser} />
+                            </a>
+                        </figure>
                         {profileInfo.id === currentUser.id ? (
                             <>
                             <input type="file" id="profile_photo" onChange={this.handleFile('profile_photo')} />
                             <a className="add-photo" onClick={() => document.getElementById("profile_photo").click()}>
                                 <div className="photo-container camera-icon">
                                     <i className="fas fa-camera photo-icon fa-2x"></i>
-                                    <span>Add Photo</span>
+                                    <span>Update Photo</span>
                                 </div>
                             </a>
                             </>
