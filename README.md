@@ -1,20 +1,20 @@
 # README
 
-* Funbook
+# Funbook
 
     Funbook is a facebook clone which is a social media website where you can connect with your friends and family, see and share updates.
 
-* Live App
+# Live App
 
     https://funnbook.herokuapp.com
 
-* Technologies used
+# Technologies used
 
     * Backend: Ruby on Rails, Postgres
     * Frontend: React, Redux, Javascript, CSS, HTML
     * Services: AWS
 
-* Features
+# Features
     
     * Posts and Comments
         * Ability to attach multiple photos with a post
@@ -27,7 +27,7 @@
     * Friending 
         * Accept, send, cancel friend request, unfriend a user and make the changes reflect across the application without even a page refresh
 
-* Code snippets
+# Code snippets
 
     * Get all sent and received friend ids easily using Rails Active Record Method in the User Model rather than a SQL query
 
