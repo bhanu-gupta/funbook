@@ -7,9 +7,10 @@ import { getAllProfilePosts} from '../../reducers/selector';
 const msp = (state, ownProps) => {
     const currentUser = state.entities.users[state.session.currentUserId];
     const profileId = ownProps.match.params.userId || currentUser.id;
+    const posts = ownProps.match.params.userId ? getAllProfilePosts(state, profileId) : getAllProfilePosts(state, profileId, 'feed')
     return {
         currentUser,
-        posts: getAllProfilePosts(state, profileId) || {},
+        posts,
         profileId,
         isFriend: ownProps.isFriend || true
     }

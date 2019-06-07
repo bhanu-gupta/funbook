@@ -1,12 +1,16 @@
 import {getUniqueArrayValues} from '../util/helper_util';
  
-export const getAllProfilePosts = (state, profileId) => {
+export const getAllProfilePosts = (state, profileId, type) => {
     let timelinePostIds = state.entities.users[profileId].postIds || [];
     const posts = [];
     if (timelinePostIds.length > 0 && state.entities.posts) {
         timelinePostIds.forEach((id) => {
             if (state.entities.posts[id]) {
-                posts.push(state.entities.posts[id]);
+                if (type === 'feed') {
+                    posts.push(state.entities.posts[id]);
+                } else if(state.entities.posts[id].userId == profileId) {
+                    posts.push(state.entities.posts[id]);
+                }
             }
         })
     }
