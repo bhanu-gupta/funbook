@@ -18,12 +18,14 @@ const CommentsIndex = (props) => {
             })
         }
     }
+    const commentsLength = props.totalComments;
+    const commentText = (commentsLength === 1) ? '1 Comment' : `${commentsLength} Comments`;
     return (
         <div className="all-comments">
-            {all_comments.length > 0 ? (
+            {commentsLength > 0 ? (
                 <div className="comment-display">
                     <span></span>
-                    <span>{all_comments.length} Comments</span>
+                    <span>{commentText}</span>
                 </div>
             ) : ""}
             <ul className="comments-nav">

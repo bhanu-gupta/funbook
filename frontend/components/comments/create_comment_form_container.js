@@ -7,7 +7,8 @@ const msp = (state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.currentUserId],
         comment,
-        formType: ownProps.formType || "create"
+        formType: ownProps.formType || "create",
+        commentType: ownProps.type || 'comment'
     }
 }
 

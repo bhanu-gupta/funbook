@@ -45,7 +45,9 @@ class CommentForm extends React.Component {
     }
 
     render() {
-        const { currentUser} = this.props;
+        const { currentUser, commentType, comment} = this.props;
+        const placeholder = (commentType === 'reply') ? "Write a reply..." : "Write a comment...";
+        const boxId = (commentType === 'reply') ? `reply-${comment.parentId}` : `comment-${comment.postId}`;
         return (
             <>
                 {this.state.showForm ? (
@@ -57,10 +59,10 @@ class CommentForm extends React.Component {
                             <form>
                                 <textarea
                                     name="body"
-                                    id="body"
+                                    id={boxId}
                                     value={this.state.body}
                                     onChange={this.updateField('body')}
-                                    placeholder="Write a comment..."
+                                    placeholder={placeholder}
                                     onKeyUp={this.handleSubmit}>
                                 </textarea>
                             </form>

@@ -3,14 +3,14 @@ import React from 'react';
 class EditPostForm extends React.Component {
     constructor(props) {
         super(props);
-        const {photoUrls, body, attachments} = props.post;
+        const { photoUrls, body, photosAttachmentIds} = props.post;
         this.photos = [];
         this.state = {
             body: body,
             photoUrls: photoUrls || [],
             isModalOpen: true
         };
-        this.attachments = attachments;
+        this.attachments = photosAttachmentIds;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.readFile = this.readFile.bind(this);
         this.removed = [];

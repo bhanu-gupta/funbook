@@ -12,5 +12,5 @@ json.friends do
 end
 
 json.user do 
-    json.partial! 'api/users/user', user: @user if current_user.id != @user.id
+    json.partial! 'api/users/user', user: @user
 end

@@ -36,7 +36,7 @@ class Timeline extends React.Component {
                         <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
                     </section>
                     <section className="timeline-posts">
-                        {isFriend ? <CreatePostFormContainer profileId={this.props.match.params.userId} /> : ""}
+                            {isFriend ? <CreatePostFormContainer profileInfo={profileInfo} currentUser={currentUser}/> : ""}
                         <PostsIndexContainer isFriend={isFriend}/>
                     </section>
                     </>

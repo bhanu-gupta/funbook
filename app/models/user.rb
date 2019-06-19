@@ -181,7 +181,7 @@ class User < ApplicationRecord
     end
 
     def self.get_user_friends(user_id, status = null)
-        friends = User.with_attached_profile_photo.with_attached_cover_photo.joins("INNER JOIN friends 
+        friends = User.joins("INNER JOIN friends 
                             ON (friends.requestor_id = users.id 
                             OR friends.receiver_id = users.id)")
                     .where("(requestor_id = ? OR receiver_id = ?) 

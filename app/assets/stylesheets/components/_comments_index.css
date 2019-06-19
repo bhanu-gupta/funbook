@@ -91,6 +91,7 @@
     overflow: hidden;
     font-size: 13px;
     overflow-wrap: break-word;
+    color: #1c1e21;
 }
 
 .comment-text .comment-author {
@@ -114,6 +115,7 @@
     margin: 0 0 5px 5px;
     font-weight: bold;
     color: #C0C2C7;
+    cursor: pointer;
 }
 
 .comment-info .more-actions:hover {

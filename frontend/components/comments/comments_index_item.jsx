@@ -27,7 +27,7 @@ class CommentsIndexItem extends React.Component {
     }
 
     render() {
-        const {comment, author, currentUser} = this.props;
+        const {comment, author, currentUserId, profileId} = this.props;
         let subComments = [];
         if (comment.subComments && comment.subComments.length > 0) {
             subComments = comment.subComments.map((subComment, idx) => {
@@ -36,7 +36,7 @@ class CommentsIndexItem extends React.Component {
         }
         let replyCommentForm = [];
         if (this.props.isFriend && !comment.parentId) {
-            replyCommentForm = <CreateCommentFormContainer postId={comment.postId} parentId={comment.parentId ? comment.parentId : comment.id} />;
+            replyCommentForm = <CreateCommentFormContainer type="reply" postId={comment.postId} parentId={comment.parentId ? comment.parentId : comment.id} />;
             if(!comment.parentId) {
                 replyCommentForm = (<div className="reply-comment">{replyCommentForm}</div>);
             }
@@ -54,7 +54,7 @@ class CommentsIndexItem extends React.Component {
                                     <Link className="comment-author" to={`/users/${author.id}`}>{`${author.firstName} ${author.lastName}`}</Link>
                                 {comment.body}
                                 </div>
-                                {author.id === currentUser.id ? (
+                                {(profileId == currentUserId || author.id === currentUserId) ? (
                                     <>
                                         <div 
                                             className="more-actions" 
@@ -68,10 +68,12 @@ class CommentsIndexItem extends React.Component {
                                             ) : ""}
                                             {this.state.displayCommentDropdown ? (
                                                 <ul className="bottom-dropdown comment-dropdown">
-                                                    <li>
-                                                        <i></i>
-                                                        <span onClick={this.editComment}>Edit...</span>
-                                                    </li>
+                                                    {author.id === currentUserId ? (
+                                                        <li>
+                                                            <i></i>
+                                                            <span onClick={this.editComment}>Edit...</span>
+                                                        </li>
+                                                    ) : ""}
                                                     <li>
                                                         <i></i>
                                                         <span onClick={() => this.props.deleteComment(comment.id)}>Delete...</span>
@@ -87,7 +89,7 @@ class CommentsIndexItem extends React.Component {
                                     <>
                                         <span><Link to="#">Like</Link></span>
                                         <span className="separator">.</span>
-                                        <span><Link to="#">Reply</Link></span>
+                                        <span><Link to="#" >Reply</Link></span>
                                         <span className="separator">.</span>
                                     </>
                                 ) : ""}

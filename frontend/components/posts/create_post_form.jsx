@@ -89,6 +89,8 @@ class CreatePostForm extends React.Component {
         }
         const photoUpload = () => document.getElementById("photo-video").click();
         const formClass = this.state.isModalOpen ? 'zoom-form' : "";
+        const {currentUser, profileId, profileInfo} = this.props;
+        const placeholder = (profileId == currentUser.id) ? "What's on your mind?" : `Write something to ${profileInfo.firstName}...`;
 
         const form = (
                 <section className={`create-post section-box ${formClass}`} onClick={this.openModal}>
@@ -116,13 +118,13 @@ class CreatePostForm extends React.Component {
                     <form className="post-body" onSubmit={this.handleSubmit}>
                         <div className="post-text">
                             <figure className="profile-pic">
-                                <img src={this.props.currentUser.profilePhoto ? this.props.currentUser.profilePhoto : window.defaultUser} />
+                                <img src={currentUser.profilePhoto ? currentUser.profilePhoto : window.defaultUser} />
                             </figure>
                             <textarea
                                 name="body"
                                 id="body"
                                 onChange={this.updateField('body')}
-                                placeholder="What's on your mind?"
+                                placeholder={placeholder}
                                 className={this.state.isModalOpen ? "modal-body" : ""}
                                 value={this.state.body}
                             >

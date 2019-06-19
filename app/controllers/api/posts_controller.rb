@@ -7,7 +7,7 @@ class Api::PostsController < ApplicationController
         else
             friend_ids = current_user.get_all_friend_ids
             friend_ids.push(current_user.id)
-            @posts = Post.with_attached_photos.includes([:author, comments: [:author, :parent_comment]]).where(user_id: friend_ids)
+            @posts = Post.with_attached_photos.includes([:photos_attachments, :author, comments: [:author, :parent_comment]]).where(user_id: friend_ids).where("user_id = author_id")
         end
         render :index
     end
@@ -40,7 +40,7 @@ class Api::PostsController < ApplicationController
     end
 
     def destroy
-        post = current_user.authored_posts.find_by(id: params[:id])
+        post = current_user.authored_posts.find_by(id: params[:id]) || current_user.posts.find_by(id: params[:id])
         if post
             @post = post
             if post.destroy
@@ -48,7 +48,7 @@ class Api::PostsController < ApplicationController
                 render :destroy
             end
         else 
-            render json: ["You can only delete your own posts"], status: 422
+            render json: ["You can only delete posts on your timeline"], status: 422
         end
     end
 

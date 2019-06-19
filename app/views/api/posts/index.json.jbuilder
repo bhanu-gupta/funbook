@@ -1,7 +1,6 @@
 json.key_format! camelize: :lower
 users_arr = []
 post_comments = []
-
 json.posts do
     @posts.each do |post|
         json.set! post.id do 

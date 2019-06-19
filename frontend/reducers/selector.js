@@ -2,14 +2,18 @@ import {getUniqueArrayValues} from '../util/helper_util';
  
 export const getAllProfilePosts = (state, profileId, type) => {
     let timelinePostIds = state.entities.users[profileId].postIds || [];
+    let userFriends = state.entities.users[profileId].friendIds || [];
     const posts = [];
     if (timelinePostIds.length > 0 && state.entities.posts) {
         timelinePostIds.forEach((id) => {
-            if (state.entities.posts[id]) {
+            const post = state.entities.posts[id];
+            if (post) {
                 if (type === 'feed') {
-                    posts.push(state.entities.posts[id]);
-                } else if(state.entities.posts[id].userId == profileId) {
-                    posts.push(state.entities.posts[id]);
+                    if (post.userId === post.authorId && userFriends.includes(post.userId)) {
+                        posts.push(post);
+                    }
+                } else if(post.userId == profileId) {
+                    posts.push(post);
                 }
             }
         })

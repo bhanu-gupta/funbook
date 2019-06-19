@@ -4,11 +4,14 @@ import {createPost} from '../../actions/posts_actions';
 import {withRouter} from 'react-router-dom';
 
 const msp = (state, ownProps) => {
-    const profileId = ownProps.match.params.userId || state.session.currentUserId;
+    const currentUserId = state.session.currentUserId;
+    const currentUser = state.entities.users[currentUserId];
+    const profileId = ownProps.match.params.userId || currentUserId;
     return {
-        currentUser: state.entities.users[state.session.currentUserId],
-        profileId
-    }
+        currentUser: ownProps.currentUser || currentUser,
+        profileId,
+        profileInfo: state.entities.users[profileId] || currentUser
+    }   
 }
 
 const mdp = dispatch => {

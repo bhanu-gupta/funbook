@@ -7,11 +7,15 @@ import {deletePost} from '../../actions/posts_actions';
 const msp = (state, ownProps) => {
     const authorId = ownProps.post.authorId;
     const userId = ownProps.post.userId;
+    const postId = ownProps.post.id;
+    const currentUserId = state.session.currentUserId;
     return {
         author: state.entities.users[authorId] || {},
         user: state.entities.users[userId] || {},
         comments: isEmpty(state.entities.comments) ? {} : (getAllPostComments(state, ownProps.post.id)),
-        isFriend: ownProps.isFriend
+        totalComments: state.entities.posts[postId].commentIds.length,
+        isFriend: ownProps.isFriend,
+        currentUserId
     }
 }
 

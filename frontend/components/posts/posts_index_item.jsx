@@ -3,6 +3,7 @@ import {formatDate} from '../../util/date_util';
 import {Link} from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 import EditPostFormContainer from './edit_post_form_container';
+import { logoutCurrentUser } from '../../actions/auth_actions';
 
 class PostsIndexItem extends React.Component {
 
@@ -16,7 +17,7 @@ class PostsIndexItem extends React.Component {
 
     render() {
         const {body, createdAt, id, photoUrls} = this.props.post;
-        const {author, user, comments, deletePost} = this.props;
+        const { author, user, comments, deletePost, currentUserId} = this.props;
         const all_photos = photoUrls ? photoUrls.slice(0, 5).map((photoUrl, idx) => {
             return (
                 <figure key={idx}>
@@ -46,7 +47,7 @@ class PostsIndexItem extends React.Component {
                                 <i className="fas fa-user-friends"></i>
                             </div>
                         </div>
-                        {author.id === user.id ? (
+                        {(author.id === currentUserId || user.id === currentUserId) ? (
                             <>
                                 <div
                                     className="more-actions"
@@ -55,10 +56,12 @@ class PostsIndexItem extends React.Component {
                                     ...
                                     {this.state.displayPostOptions ? (
                                         <ul className="bottom-dropdown post-actions-dropdown">
-                                            <li>
-                                                <i></i>
-                                                <span onClick={() => this.setState({ displayEditForm: true })}>Edit Post</span>
-                                            </li>
+                                            {author.id === currentUserId ? (
+                                                <li>
+                                                    <i></i>
+                                                    <span onClick={() => this.setState({ displayEditForm: true })}>Edit Post</span>
+                                                </li>
+                                            ): ""}
                                             <li>
                                                 <i></i>
                                                 <span onClick={() => deletePost(id)}>Delete</span>
@@ -75,7 +78,7 @@ class PostsIndexItem extends React.Component {
                 <div className="post-photo-gallery">
                     {all_photos}
                 </div>
-                <CommentsIndex comments={comments} postId={id} isFriend={this.props.isFriend}/>
+                <CommentsIndex comments={comments} postId={id} isFriend={this.props.isFriend} totalComments={this.props.totalComments}/>
             </li>
         );
 

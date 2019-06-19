@@ -24,14 +24,14 @@ class Api::CommentsController < ApplicationController
     end
 
     def destroy
-        comment = current_user.authored_comments.find_by(id: params[:id])
+        comment = current_user.profile_comments.find_by(id: params[:id])
         if comment
             @comment = comment
             if comment.destroy
                 render :destroy
             end
         else
-            render json: ["You can only delete your own comments"], status: 422
+            render json: ["You can only delete comments on your timeline"], status: 422
         end
     end
 
