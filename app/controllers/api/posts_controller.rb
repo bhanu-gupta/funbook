@@ -24,6 +24,11 @@ class Api::PostsController < ApplicationController
     def update
         @post = current_user.authored_posts.find_by(id: params[:id])
         if @post 
+            if params[:post][:removed] 
+                params[:post][:removed].each do |attachment_id|
+                    @post.photos.find(attachment_id).purge
+                end
+            end
             if @post.update(post_params)
                 render :update
             else
@@ -35,11 +40,12 @@ class Api::PostsController < ApplicationController
     end
 
     def destroy
-        @post = current_user.authored_posts.find_by(id: params[:id])
-        if @post
-            if @post.destroy
-                @post.comments.destroy_all
-                render json: ['Post successfully removed']
+        post = current_user.authored_posts.find_by(id: params[:id])
+        if post
+            @post = post
+            if post.destroy
+                post.comments.destroy_all
+                render :destroy
             end
         else 
             render json: ["You can only delete your own posts"], status: 422

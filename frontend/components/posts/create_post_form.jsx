@@ -5,10 +5,14 @@ class CreatePostForm extends React.Component {
         super(props);
         this.state = {
             body: '',
-            photoUrls: []
+            photoUrls: [],
+            isModalOpen: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.readFile = this.readFile.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.modalChildClick = this.modalChildClick.bind(this);
         this.photos = [];
     }
 
@@ -28,7 +32,23 @@ class CreatePostForm extends React.Component {
             formData.append('post[photos][]', this.photos[i]);
         }
         if(this.state.body || this.photos.length > 0) {
-            this.props.createPost(formData).then(() => this.props.closeModal());
+            this.props.createPost(formData).then(() => this.closeModal());
+        }
+    }
+
+    closeModal(e) {
+        this.setState({isModalOpen: false})
+    }
+
+    openModal(e) {
+        this.setState({ isModalOpen: true })
+    }
+
+    modalChildClick(e) {
+        if (e.target.id !== 'close-btn') {
+            e.stopPropagation();
+        } else {
+            this.closeModal();
         }
     }
 
@@ -55,7 +75,7 @@ class CreatePostForm extends React.Component {
 
     render() {
         let all_photos = "";
-        if (this.props.modalOpen && this.state.photoUrls.length > 0) {
+        if (this.state.isModalOpen && this.state.photoUrls.length > 0) {
             all_photos = this.state.photoUrls.map((url, idx) => {
                 return (
                     <li key={idx}>
@@ -68,80 +88,96 @@ class CreatePostForm extends React.Component {
             });
         }
         const photoUpload = () => document.getElementById("photo-video").click();
-        const formClass = this.props.modalOpen ? 'zoom-form' : "";
-        
-        return (
-            <section className={`create-post section-box ${formClass}`} onClick={this.props.openModal}>
-                <ul className="post-nav">
-                    <li>
-                        <i className="fas fa-pen"></i>
-                        <span>Create Post</span>
-                    </li>
-                    <li onClick={photoUpload}>
-                        <i className="fas fa-camera"></i>
-                        <span>Photo/Video</span>
-                    </li>
-                    <li>
-                        <i className="fas fa-video"></i>
-                        <span>Live Video</span>
-                    </li>
-                    <li>
-                        <i className="fas fa-flag"></i>
-                        <span>Life Event</span>
-                    </li>
-                    {this.props.modalOpen ? (
-                    <i id="close-btn" className="fas fa-times close-btn" onClick={this.props.closeModal}></i>
-                    ) : ""}
-                </ul>
-                <form className="post-body" onSubmit={this.handleSubmit}>
-                    <div className="post-text">
-                        <figure className="profile-pic">
-                            <img src={this.props.currentUser.profilePhoto ? this.props.currentUser.profilePhoto : window.defaultUser} />
-                        </figure>
-                        <textarea 
-                            name="body" 
-                            id="body"
-                            onChange={this.updateField('body')}
-                            placeholder="What's on your mind?"
-                            className={this.props.modalOpen ? "modal-body" : ""}
-                        >
-                        </textarea>
-                    </div>
-                    {this.props.modalOpen && (this.state.photoUrls.length > 0) ? (
-                        <div className="photo-gallery">
-                            <ul>
-                                {all_photos}
-                                <li onClick={photoUpload}>
-                                    <div className="gallery-photo add-more-photos">
-                                        <i className="fas fa-plus"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    ) : "" }
-                    <ul className="post-actions">
+        const formClass = this.state.isModalOpen ? 'zoom-form' : "";
+
+        const form = (
+                <section className={`create-post section-box ${formClass}`} onClick={this.openModal}>
+                    <ul className="post-nav">
+                        <li>
+                            <i className="fas fa-pen"></i>
+                            <span>Create Post</span>
+                        </li>
                         <li onClick={photoUpload}>
-                            <i className="fas fa-image"></i>
+                            <i className="fas fa-camera"></i>
                             <span>Photo/Video</span>
                         </li>
                         <li>
-                            <i className="fas fa-user-tag"></i>
-                            <span>Tag Friends</span>
+                            <i className="fas fa-video"></i>
+                            <span>Live Video</span>
                         </li>
                         <li>
-                            <i className="far fa-laugh"></i>
-                            <span>Feeling/Activity</span>
+                            <i className="fas fa-flag"></i>
+                            <span>Life Event</span>
                         </li>
-                        <li><span>...</span></li>
+                        {this.state.isModalOpen ? (
+                            <i id="close-btn" className="fas fa-times close-btn"></i>
+                        ) : ""}
                     </ul>
-                    <input type="file" name="Upload Photo/Video" id="photo-video" onChange={this.readFile} multiple/>
-                    {this.props.modalOpen ? (
-                        <div className="share-btn">
-                            <input type="submit" value="Share"/>
+                    <form className="post-body" onSubmit={this.handleSubmit}>
+                        <div className="post-text">
+                            <figure className="profile-pic">
+                                <img src={this.props.currentUser.profilePhoto ? this.props.currentUser.profilePhoto : window.defaultUser} />
+                            </figure>
+                            <textarea
+                                name="body"
+                                id="body"
+                                onChange={this.updateField('body')}
+                                placeholder="What's on your mind?"
+                                className={this.state.isModalOpen ? "modal-body" : ""}
+                                value={this.state.body}
+                            >
+                            </textarea>
                         </div>
-                    ) : ""}
-                </form>
-            </section>
+                        {this.state.isModalOpen && (this.state.photoUrls.length > 0) ? (
+                            <div className="photo-gallery">
+                                <ul>
+                                    {all_photos}
+                                    <li onClick={photoUpload}>
+                                        <div className="gallery-photo add-more-photos">
+                                            <i className="fas fa-plus"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        ) : ""}
+                        <ul className="post-actions">
+                            <li onClick={photoUpload}>
+                                <i className="fas fa-image"></i>
+                                <span>Photo/Video</span>
+                            </li>
+                            {/* <li>
+                                <i className="fas fa-user-tag"></i>
+                                <span>Tag Friends</span>
+                            </li>
+                            <li>
+                                <i className="far fa-laugh"></i>
+                                <span>Feeling/Activity</span>
+                            </li>
+                            <li><span>...</span></li> */}
+                        </ul>
+                        <input type="file" name="Upload Photo/Video" id="photo-video" onChange={this.readFile} multiple />
+                        {this.state.isModalOpen ? (
+                            <div className="share-btn">
+                                <input type="submit" value="Share" />
+                            </div>
+                        ) : ""}
+                    </form>
+                </section>
+            );
+
+        
+        return (
+            <>
+                {this.state.isModalOpen ? (
+                    <>
+                        <div className="modal-background" onClick={this.closeModal} >
+                        </div>
+                        <div className="modal-child" onClick={this.modalChildClick}>
+                            {form}
+                        </div>
+                    </>
+                ) : form}
+            </>
         )
     }
 }

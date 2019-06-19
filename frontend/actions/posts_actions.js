@@ -23,10 +23,10 @@ const receivePost = (post, newPost = false) => {
     }
 }
 
-const removePost = (postId) => {
+const removePost = (post) => {
     return {
         type: REMOVE_POST,
-        postId
+        post
     }
 }
 
@@ -75,9 +75,9 @@ export const createPost = (postForm) => {
     }
 }
 
-export const updatePost = (postForm) => {
+export const updatePost = (postForm, postId) => {
     return dispatch => {
-        return PostsAPIUtil.updatePost(postForm).then(
+        return PostsAPIUtil.updatePost(postForm, postId).then(
             (post) => dispatch(receivePost(post)),
             (errors) => dispatch(receivePostErrors(errors.responseJSON))
         );

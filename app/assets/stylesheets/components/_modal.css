@@ -9,8 +9,6 @@
 }
 
 .modal-child {
-  position: absolute;
-  top: 50%;
-  left: 57%;
-  transform: translate(-49%, -50%);
+  position: relative;
+  z-index:100;
 }

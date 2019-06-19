@@ -49,6 +49,7 @@
     min-height: 0;
     align-items: flex-start;
     color: #616770;
+    position: relative;
 }
 
 .single-post .post-info {
@@ -93,4 +94,19 @@
     width: auto;
     overflow:hidden;
     text-align:center;
+}
+
+.single-post .post-text .more-actions {
+    position: absolute;
+    right:-3px;
+    top:-12px;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.single-post .post-actions-dropdown {
+    top: 31px;
+    left: -20px;
+    font-weight: normal;
 }

@@ -11,8 +11,8 @@ export default (state = {}, action) => {
         case RECEIVE_POST:
             return merge({}, state, {[action.post.id]: action.post})
         case REMOVE_POST:
-            let newState = merge({}, oldState);
-            delete newState[action.postId];
+            let newState = merge({}, state);
+            delete newState[action.post.id];
             return newState;
         case RECEIVE_COMMENT:
             if (action.newComment) {

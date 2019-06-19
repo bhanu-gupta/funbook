@@ -22,16 +22,13 @@ export const createPost = (formData) => {
     });
 }
 
-export const updatePost = (postForm) => {
-    const { body, postId } = postForm;
+export const updatePost = (formData, postId) => {
     return $.ajax({
         method: 'PATCH',
         url: `api/posts/${postId}`,
-        data: {
-            post: {
-                body: body
-            }
-        }
+        data: formData,
+        contentType: false,
+        processData: false
     })
 }
 

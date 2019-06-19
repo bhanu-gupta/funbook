@@ -5,12 +5,10 @@ import FriendsIndexContainer from '../friends/friends_index_container';
 import TimelineContainer from './timeline_container';
 import ProfileHeaderContainer from '../user_profile/profile_header_container';
 import {ProtectedRoute} from '../../util/route_utils';
-import Modal from '../modal';
 
 const UserProfileIndex = () => {
     return (
         <>
-            <Modal />
             <MainNavContainer />
             <main className="main-content profile-main">
                 <div className="profile-content">

@@ -20,6 +20,8 @@ export default (state = {}, action) => {
                 return merge({}, state, {[userId]:{
                     postIds: [action.post.id].concat(state[userId].postIds)
                 }});
+            } else {
+                return state;
             }
         case REMOVE_POST:
             const userId = action.post.userId;
