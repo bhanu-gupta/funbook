@@ -3,7 +3,6 @@ import {formatDate} from '../../util/date_util';
 import {Link} from 'react-router-dom';
 import CommentsIndex from '../comments/comments_index';
 import EditPostFormContainer from './edit_post_form_container';
-import { logoutCurrentUser } from '../../actions/auth_actions';
 
 class PostsIndexItem extends React.Component {
 
@@ -13,6 +12,16 @@ class PostsIndexItem extends React.Component {
             displayEditForm: false,
             displayPostOptions: false
         }
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    closeModal(e) {
+        this.setState({ displayEditForm: false })
+    }
+
+    openModal(e) {
+        this.setState({ displayEditForm: true })
     }
 
     render() {
@@ -59,7 +68,7 @@ class PostsIndexItem extends React.Component {
                                             {author.id === currentUserId ? (
                                                 <li>
                                                     <i></i>
-                                                    <span onClick={() => this.setState({ displayEditForm: true })}>Edit Post</span>
+                                                    <span onClick={this.openModal}>Edit Post</span>
                                                 </li>
                                             ): ""}
                                             <li>
@@ -71,7 +80,7 @@ class PostsIndexItem extends React.Component {
                                 </div>
                             </>
                         ) : ""}
-                        {this.state.displayEditForm ? <EditPostFormContainer post={this.props.post}/>: ""}
+                        {this.state.displayEditForm ? <EditPostFormContainer post={this.props.post} closeModal={this.closeModal}/>: ""}
                     </div>
                     <div className="post-body">{body}</div>
                 </section>

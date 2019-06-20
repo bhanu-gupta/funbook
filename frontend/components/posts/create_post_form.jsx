@@ -8,12 +8,12 @@ class CreatePostForm extends React.Component {
             photoUrls: [],
             isModalOpen: false
         };
+        this.photos = [];
         this.handleSubmit = this.handleSubmit.bind(this);
         this.readFile = this.readFile.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
         this.modalChildClick = this.modalChildClick.bind(this);
-        this.photos = [];
     }
 
     updateField(field) {
@@ -32,7 +32,10 @@ class CreatePostForm extends React.Component {
             formData.append('post[photos][]', this.photos[i]);
         }
         if(this.state.body || this.photos.length > 0) {
-            this.props.createPost(formData).then(() => this.closeModal());
+            this.props.createPost(formData).then(() => {
+                this.setState({body: '', photoUrls: [], isModalOpen: false});
+            });
+            this.photos = [];
         }
     }
 
@@ -103,14 +106,14 @@ class CreatePostForm extends React.Component {
                             <i className="fas fa-camera"></i>
                             <span>Photo/Video</span>
                         </li>
-                        <li>
+                        {/* <li>
                             <i className="fas fa-video"></i>
                             <span>Live Video</span>
                         </li>
                         <li>
                             <i className="fas fa-flag"></i>
                             <span>Life Event</span>
-                        </li>
+                        </li> */}
                         {this.state.isModalOpen ? (
                             <i id="close-btn" className="fas fa-times close-btn"></i>
                         ) : ""}

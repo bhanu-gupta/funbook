@@ -5,13 +5,16 @@ import { removeValueFromArray } from '../util/helper_util';
 
 export default (state = {}, action) => {
     Object.freeze(state);
+    let newState = merge({}, state);
     switch (action.type) {
         case RECEIVE_POSTS:
             return merge({}, state, action.posts)
         case RECEIVE_POST:
-            return merge({}, state, {[action.post.id]: action.post})
+            if (newState[action.post.id]) {
+                delete newState[action.post.id];
+            }
+            return merge({}, newState, {[action.post.id]: action.post})
         case REMOVE_POST:
-            let newState = merge({}, state);
             delete newState[action.post.id];
             return newState;
         case RECEIVE_COMMENT:

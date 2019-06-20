@@ -7,8 +7,7 @@ class EditPostForm extends React.Component {
         this.photos = [];
         this.state = {
             body: body,
-            photoUrls: photoUrls || [],
-            isModalOpen: true
+            photoUrls: photoUrls || []
         };
         this.attachments = photosAttachmentIds;
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,8 +34,10 @@ class EditPostForm extends React.Component {
                 formData.append('post[removed][]', this.removed[j])
             }
         }
-        if (this.state.body || this.photos.length > 0 || this.removed.length > 0) {
-            this.props.updatePost(formData, this.props.post.id).then(() => this.setState({isModalOpen: false}));
+        if ((this.state.body !== this.props.post.body) || this.photos.length > 0 || this.removed.length > 0) {
+            this.props.updatePost(formData, this.props.post.id).then(this.props.closeModal);
+        } else {
+            this.props.closeModal();
         }
     }
 
@@ -61,7 +62,7 @@ class EditPostForm extends React.Component {
                 that.attachments = that.attachments.slice(0, index).concat(that.attachments.slice(index+1))
             } else {
                 that.photos = that.photos.filter((photo, idx) => idx !== (index-that.attachments.length));
-            } 
+            }
             const photoUrls = that.state.photoUrls.filter((url, idx2) => idx2 !== index);
             that.setState({ photoUrls });
         }
@@ -89,7 +90,7 @@ class EditPostForm extends React.Component {
                     <li>
                         <span>Edit Post</span>
                     </li>
-                    <i id="close-btn" className="fas fa-times close-btn"></i>
+                    <i id="close-btn" className="fas fa-times close-btn" onClick={this.props.closeModal}></i>
                 </ul>
                 <form className="post-body" onSubmit={this.handleSubmit}>
                     <div className="post-text">
@@ -135,15 +136,11 @@ class EditPostForm extends React.Component {
 
         return (
             <>
-                {this.state.isModalOpen ? (
-                    <>
-                        <div className="modal-background">
-                        </div>
-                        <div className="modal-child">
-                            {form}
-                        </div>
-                    </>
-                ) : ""}
+                <div className="modal-background">
+                </div>
+                <div className="modal-child">
+                    {form}
+                </div>
             </>
         );
     }
