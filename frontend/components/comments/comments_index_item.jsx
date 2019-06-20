@@ -89,7 +89,7 @@ class CommentsIndexItem extends React.Component {
                                     <>
                                         <span><Link to="#">Like</Link></span>
                                         <span className="separator">.</span>
-                                        <span><Link to="#" >Reply</Link></span>
+                                        <span><Link to="#" onClick={() => document.getElementById(`reply-${comment.parentId ? comment.parentId : comment.id}`).focus()}>Reply</Link></span>
                                         <span className="separator">.</span>
                                     </>
                                 ) : ""}

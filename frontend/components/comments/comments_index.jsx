@@ -35,7 +35,7 @@ const CommentsIndex = (props) => {
                             <i className="fas fa-thumbs-up"></i>
                             <span>Like</span>
                         </li>
-                        <li>
+                        <li onClick={() => document.getElementById(`comment-${props.postId}`).focus()}>
                             <i className="far fa-comment-alt"></i>
                             <span>Comment</span>
                         </li>
