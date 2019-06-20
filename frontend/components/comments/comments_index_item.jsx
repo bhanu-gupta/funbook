@@ -22,8 +22,12 @@ class CommentsIndexItem extends React.Component {
         this.setState({ editComment : true});
     }
 
-    toggleTooltip() {
-
+    replyComment(commentId) {
+        return () => {
+            this.setState({ replyComment: true }, () => {
+                document.getElementById(`reply-${commentId}`).focus();
+            })
+        }
     }
 
     render() {
@@ -89,7 +93,7 @@ class CommentsIndexItem extends React.Component {
                                     <>
                                         <span><Link to="#">Like</Link></span>
                                         <span className="separator">.</span>
-                                        <span><Link to="#" onClick={() => document.getElementById(`reply-${comment.parentId ? comment.parentId : comment.id}`).focus()}>Reply</Link></span>
+                                        <span><Link to="#" onClick={this.replyComment(comment.parentId ? comment.parentId : comment.id)}>Reply</Link></span>
                                         <span className="separator">.</span>
                                     </>
                                 ) : ""}
@@ -102,7 +106,7 @@ class CommentsIndexItem extends React.Component {
                     <div className="reply-comment">
                         {subComments}
                     </div>) : ""}
-                {replyCommentForm}
+                {(subComments.length > 0 || this.state.replyComment) ? replyCommentForm : ""}
             </>
         );
     }

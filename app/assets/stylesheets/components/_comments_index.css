@@ -92,6 +92,7 @@
     font-size: 13px;
     overflow-wrap: break-word;
     color: #1c1e21;
+    max-width: 350px;
 }
 
 .comment-text .comment-author {
