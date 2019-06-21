@@ -11,6 +11,7 @@ class FriendshipButtons extends React.Component {
         this.sendFriendRequest = this.sendFriendRequest.bind(this);
         this.addFriend = this.addFriend.bind(this);
         this.removeFriend = this.removeFriend.bind(this);
+        this._isMounted = true;
         this.buttons = {
             default: "",
             friend: (
@@ -18,7 +19,6 @@ class FriendshipButtons extends React.Component {
                     <button>
                         <i className="fas fa-check"></i>
                         <span>Friends</span>
-
                     </button>
                     <ul className="bottom-dropdown friend-dropdown">
                         <li onClick={this.removeFriend}>Unfriend</li>
@@ -80,19 +80,29 @@ class FriendshipButtons extends React.Component {
         }
     }
 
+    updateButton(button) {
+        if (this._isMounted === true) {
+            this.setState({ buttonType: button });
+        }
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     sendFriendRequest(e) {
         this.props.sendFriendRequest(this.props.profileId)
-        .then(() => this.setState({ buttonType: 'sentFriend' }));
+            .then(() => this.updateButton('sentFriend'));
     }
 
     addFriend(e) {
         this.props.addFriend(this.props.profileId)
-            .then(() => this.setState({ buttonType: 'friend' }));
+            .then(() => this.updateButton('friend'));
     }
 
     removeFriend(e) {
         this.props.removeFriend(this.props.profileId)
-            .then(() => this.setState({ buttonType: 'addFriend' }));
+            .then(() => this.updateButton('addFriend'));
     }
 
     render() {

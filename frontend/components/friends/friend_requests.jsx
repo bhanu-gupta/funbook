@@ -28,12 +28,14 @@ class FriendRequests extends React.Component {
         let friends = [];
         let linkTxt = "";
         const { sentFriends, receivedFriends} = this.props;
+        const receivedCount = receivedFriends.length;
+        const requestText = receivedCount === 1 ? 'Friend Request' : 'Friend Requests';
         if (this.state.type === 'sent') {
             heading = sentFriends.length === 0 ? 'No Sent Friend Requests' : 'Friend Requests Sent';
             friends = sentFriends;
             linkTxt = 'View Received Requests';
         } else {
-            heading = receivedFriends.length === 0 ? 'No Received Friend Requests' : `Respond to Your ${receivedFriends.length} Friend Requests`;
+            heading = receivedFriends.length === 0 ? 'No Received Friend Requests' : `Respond to Your ${receivedFriends.length} ${requestText}`;
             friends = receivedFriends;
             linkTxt = 'View Sent Requests';
         }

@@ -149,6 +149,7 @@
     height: 100%;
     display:flex;
     align-items: center;
+    position: relative;
 }
 
 .profile-header .cover-pic {
@@ -162,4 +163,53 @@
 .profile-header-menu ul li:hover {
     background-color: #F5F6F7;
     cursor: pointer;
+}
+
+.profile-header-menu .friend-count {
+    padding-left: 6px;
+    color: #89919c;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.profile-header-menu li.menu-selected:after {
+   content: "";
+    display: block;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #d3d6db;
+    border-right: 7px solid transparent;
+    border-top: 0;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -1px;
+}
+
+.profile-header-menu li.menu-selected:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-bottom: 8px solid #E9EAED;
+    border-right: 10px solid transparent;
+    border-top: 0;
+    left: 50%;
+    margin-left: -5px;
+    bottom: -1px;
+}
+
+.profile-header-menu li.menu-selected:after {
+ border-bottom:1px solid #E9EAED ;
+}
+
+.profile-header-menu ul li.menu-selected:hover {
+    background-color: inherit;
+}
+
+.profile-header-menu li.menu-selected a {
+    color: #4B4F56;
+}
+
+.profile-header-menu li.menu-selected {
+    border-bottom:none;
 }

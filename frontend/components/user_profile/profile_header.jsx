@@ -55,6 +55,7 @@ class ProfileHeader extends React.Component {
     }
 
     render() {
+        const urlPath = this.props.location.pathname;
         const { profileInfo, currentUser } = this.props;
         const profile_preview = this.state.profile_photo.url ? this.state.profile_photo.url : (profileInfo ? profileInfo.profilePhoto : null);
         const cover_preview = this.state.cover_photo.url ? this.state.cover_photo.url : (profileInfo ? profileInfo.coverPhoto : null);
@@ -92,10 +93,18 @@ class ProfileHeader extends React.Component {
                 </div>
                 <div className="profile-header-menu">
                     <ul>
-                        <li><Link to={`/users/${profileInfo.id}/timeline`}>Timeline</Link></li>
+                        <li className={urlPath.match(/timeline/i) ? "menu-selected" : ""}><Link to={`/users/${profileInfo.id}/timeline`}>Timeline</Link></li>
                         {/* <li>About</li> */}
-                        <li><Link to={`/users/${profileInfo.id}/friends`}>Friends</Link></li>
-                        <li><Link to={`/users/${profileInfo.id}/photos`}>Photos</Link></li>
+                        <li className={urlPath.match(/friends/i) ? "menu-selected" : ""}>
+                            <Link to={`/users/${profileInfo.id}/friends`}>Friends 
+                                <span className="friend-count">
+                                        {profileInfo.friendIds ? profileInfo.friendIds.length : ""}
+                                </span>
+                            </Link>
+                        </li>
+                        <li className={urlPath.match(/photos/i) ? "menu-selected" : ""}>
+                            <Link to={`/users/${profileInfo.id}/photos`}>Photos</Link>
+                        </li>
                         {/* <li>Archive</li>
                         <li>More</li> */}
                     </ul>
