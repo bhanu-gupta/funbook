@@ -2,36 +2,20 @@ import * as FriendsAPIUtil from '../util/friends_api_util';
 import {receiveUsers} from '../actions/auth_actions';
 import {merge} from 'lodash';
 
-export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
-export const SEND_FRIEND_REQUEST = 'SEND_FRIEND_REQUEST';
-export const REMOVE_FRIEND_REQUEST = 'REMOVE_FRIEND_REQUEST';
 export const RECEIVE_FRIEND_REQUEST_ERRORS = 'RECEIVE_FRIEND_REQUEST_ERRORS';
-
-const receiveFriendRequest = (friendReq) => {
-    return {
-        type: ACCEPT_FRIEND_REQUEST,
-        friendReq
-    }
-}
-
-const newFriendRequest = (friendReq) => {
-    return {
-        type: SEND_FRIEND_REQUEST,
-        friendReq
-    }
-}
-
-const removeFriendRequest = (friendReq) => {
-    return {
-        type: REMOVE_FRIEND_REQUEST,
-        friendReq
-    }
-}
+export const RECEIVE_FRIENDS = 'RECEIVE_FRIENDS';
 
 const receiveFriendRequestErrors = (errors) => {
     return {
         type: RECEIVE_FRIEND_REQUEST_ERRORS,
         errors
+    }
+}
+
+const receiveFriends = (friends) => {
+    return {
+        type: RECEIVE_FRIENDS,
+        friends
     }
 }
 
@@ -74,7 +58,7 @@ export const fetchFriendRequestsData = () => {
 export const sendFriendRequest = (receiverId) => {
     return dispatch => {
         return FriendsAPIUtil.sendFriendRequest(receiverId).then(
-            (friendReq) => dispatch(newFriendRequest(friendReq)),
+            (response) => dispatch(receiveFriends(response.friends)),
             (errors) => dispatch(receiveFriendRequestErrors(errors.responseJSON))
         );
     }
@@ -83,7 +67,7 @@ export const sendFriendRequest = (receiverId) => {
 export const acceptFriendRequest = (requestorId) => {
     return dispatch => {
         return FriendsAPIUtil.acceptFriendRequest(requestorId).then(
-            (friendReq) => dispatch(receiveFriendRequest(friendReq)),
+            (response) => dispatch(receiveFriends(response.friends)),
             (errors) => dispatch(receiveFriendRequestErrors(errors.responseJSON))
         );
     }
@@ -92,7 +76,7 @@ export const acceptFriendRequest = (requestorId) => {
 export const removeFriend = (requestorId) => {
     return dispatch => {
         return FriendsAPIUtil.removeFriendRequest(requestorId).then(
-            (friendReq) => dispatch(removeFriendRequest(friendReq)),
+            (response) => dispatch(receiveFriends(response.friends)),
             (errors) => dispatch(receiveFriendRequestErrors(errors.responseJSON))
         );
     }

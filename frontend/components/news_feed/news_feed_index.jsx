@@ -10,8 +10,10 @@ const NewsFeedIndex = (props) => {
             <main className="main-content profile-main">
                 <div className="profile-content">
                     <div className="profile-middle">
-                        <CreatePostFormContainer />
-                        <PostsIndexContainer />
+                        <div className="feed-posts">
+                            <CreatePostFormContainer />
+                            <PostsIndexContainer />
+                        </div>
                     </div>
                 </div>
             </main>

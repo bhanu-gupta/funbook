@@ -9,7 +9,7 @@ export const getAllProfilePosts = (state, profileId, type) => {
             const post = state.entities.posts[id];
             if (post) {
                 if (type === 'feed') {
-                    if (post.userId === post.authorId && userFriends.includes(post.userId)) {
+                    if (post.userId === post.authorId && (profileId == post.authorId || userFriends.includes(post.userId))) {
                         posts.push(post);
                     }
                 } else if(post.userId == profileId) {

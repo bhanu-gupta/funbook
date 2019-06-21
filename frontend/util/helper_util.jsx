@@ -27,15 +27,6 @@ export const removeValueFromArray = (array, value) => {
     return array.filter((ele) => ele != value)
 }
 
-export const findValueInArray = (array, value) => {
-    for (let i=0; i < array.length; i++) {
-        if (array[i] === value) {
-            return true;
-        }
-    }
-    return false
-}
-
 export const getUniqueArrayValues = (array) => {
     return array.filter((val, idx) => array.indexOf(val) === idx)
 }
