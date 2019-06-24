@@ -166,3 +166,34 @@ a:hover {
 .profile-pic a{
     margin-left: 0;
 }
+
+button.small-btn {
+    cursor: pointer;
+    font-size: 12px;
+    text-shadow: none;
+    width: auto;
+    padding: 2px 8px;
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 2px;
+    margin: 2px; 
+}
+
+button.white-btn {
+    background: #f5f6f7;
+    border: 1px solid #ccd0d5;
+    color: #4b4f56;  
+}
+
+button.white-btn:hover {
+    background-color: #ebedf0;
+}
+
+button.blue-btn {
+    background: #4267b2;
+    border: 1px solid #4267b2;
+}
+
+button.blue-btn:hover {
+    background: #365899;
+}

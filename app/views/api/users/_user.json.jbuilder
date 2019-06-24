@@ -1,5 +1,5 @@
 json.key_format! camelize: :lower
-json.extract! user, :id, :username, :email, :first_name, :last_name, :gender, :birthday
+json.extract! user, :id, :username, :email, :first_name, :last_name, :gender, :birthday, :bio
 all_friend_ids = user.get_all_friend_ids
 json.friend_ids all_friend_ids
 friends = all_friend_ids.dup.concat([user.id])

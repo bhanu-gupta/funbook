@@ -3,6 +3,7 @@ import TopFriends from '../friends/top_friends';
 import PostsIndexContainer from '../posts/posts_index_container';
 import CreatePostFormContainer from '../posts/create_post_form_container';
 import PageNotFound from  '../page_not_found';
+import IntroContainer from './intro_container';
 
 class Timeline extends React.Component {
 
@@ -33,6 +34,7 @@ class Timeline extends React.Component {
                 {this.props.profileInfo ? (
                     <>
                     <section className="timeline-sidebar">
+                        <IntroContainer profileInfo={profileInfo} currentUser={currentUser}/>
                         <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
                     </section>
                     <section className="timeline-posts">

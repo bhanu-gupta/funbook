@@ -1,0 +1,71 @@
+.intro-section .globe-icon {
+    color: #fff;
+    padding: 2px;
+    background-color: #4267B2;
+}
+
+.sidebar-section.intro-section h1 {
+    margin-left: 10px;
+}
+
+.intro-section .profile-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
+    padding-bottom: 20px;
+}
+
+.intro-section .comment-icon {
+    font-size: 18px;
+}
+
+.intro-section .profile-bio a {
+    font-size: 12px;
+    color: #3578e5;
+}
+
+.intro-section .profile-bio a:hover {
+    text-decoration: underline;
+}
+
+.intro-section form {
+    border: 1px solid #ebedf0;
+    margin: 8px 12px 16px 12px;
+    color: #1d2129;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro-section textarea {
+    resize: none;
+    border: none;
+    padding: 8px 16px; 
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.intro-section textarea:focus {
+    outline:none;
+}
+
+.intro-section .edit-bio-actions {
+    background-color: #f5f6f7;
+    border-top: 1px solid #ebedf0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.intro-section .profile-bio .add-bio-txt {
+    padding: 10px 0;
+}

@@ -9,6 +9,8 @@
     color: #1c1e21;
     margin-bottom: 10px;
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-section header {
@@ -32,8 +34,8 @@
 }
 
 .timeline-sidebar ul {
-    height: 340px;
-    margin: 0 5px;
+    margin: 0 3px;
+    padding-bottom: 5px;
 }
 
 .timeline-sidebar li {
@@ -53,7 +55,6 @@
     height: 101px;
     width: auto;
     min-width: initial;
-    overflow: hidden;
 }
 
 .timeline-sidebar a{
@@ -62,6 +63,7 @@
     color: #1c1e21;
     display: flex;
     justify-content: center;
+    margin-left: 0;
 }
 .section-box {
     background-color: #fff;

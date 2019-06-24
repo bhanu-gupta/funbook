@@ -23,7 +23,7 @@ end
 json.users do
     users_arr.each do |user|
         json.set! user.id do
-            json.extract! user, :id, :username, :first_name, :last_name
+            json.extract! user, :id, :username, :first_name, :last_name, :bio
             json.profilePhoto url_for(user.profile_photo) if user.profile_photo.attached?
         end
     end
