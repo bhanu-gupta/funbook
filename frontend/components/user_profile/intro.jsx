@@ -7,7 +7,8 @@ class Intro extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayEditForm: false
+            displayEditForm: false,
+            displayEditIcon: false
         }
         this.hideEditForm = this.hideEditForm.bind(this);
         this.showEditForm = this.showEditForm.bind(this);
@@ -34,7 +35,17 @@ class Intro extends React.Component {
                 {this.state.displayEditForm === false ? (
                   <div className="profile-bio">
                     {profileInfo.bio ? (
-                      profileInfo.bio
+                      <>
+                        {profileInfo.bio}
+                        {currentUser.id === profileInfo.id ? (
+                          <i
+                            className="fas fa-pen edit-icon"
+                            onClick={this.showEditForm}
+                          />
+                        ) : (
+                          ""
+                        )}
+                      </>
                     ) : (
                       <>
                         <i className="far fa-comment-alt comment-icon" />
