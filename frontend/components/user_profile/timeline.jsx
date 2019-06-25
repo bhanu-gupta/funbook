@@ -4,6 +4,7 @@ import PostsIndexContainer from '../posts/posts_index_container';
 import CreatePostFormContainer from '../posts/create_post_form_container';
 import PageNotFound from  '../page_not_found';
 import IntroContainer from './intro_container';
+import PostsIndexItemContainer from '../posts/posts_index_item_container';
 
 class Timeline extends React.Component {
 
@@ -40,6 +41,7 @@ class Timeline extends React.Component {
                     <section className="timeline-posts">
                             {isFriend ? <CreatePostFormContainer profileInfo={profileInfo} currentUser={currentUser}/> : ""}
                         <PostsIndexContainer isFriend={isFriend}/>
+                        <PostsIndexItemContainer post={{}} isFriend={isFriend} type="birth" profileInfo={profileInfo}/>
                     </section>
                     </>
                 ): <PageNotFound />}

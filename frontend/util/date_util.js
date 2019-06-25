@@ -18,7 +18,7 @@ export const formatDate = date => {
     const today = getCurrentFullDate();
     const obj = new Date(date);
     const month = months[obj.getMonth()];
-    const day = obj.getDate();
+    const day = obj.getUTCDate();
     const year = obj.getFullYear();
     let formattedDate = `${month} ${day}`;
     if (year < today.year) {

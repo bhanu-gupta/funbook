@@ -26,7 +26,7 @@ class PostsIndexItem extends React.Component {
 
     render() {
         const {body, createdAt, id, photoUrls} = this.props.post;
-        const { author, user, comments, deletePost, currentUserId} = this.props;
+        const { author, user, comments, deletePost, currentUserId, type, profileInfo} = this.props;
         const all_photos = photoUrls ? photoUrls.slice(0, 5).map((photoUrl, idx) => {
             return (
                 <figure key={idx}>
@@ -34,6 +34,10 @@ class PostsIndexItem extends React.Component {
                 </figure>
             );
         }) : "";
+        let createdDate = createdAt;
+        if (type === 'birth') {
+            createdDate = profileInfo.birthday;
+        }
         return (
             <li className="section-box">
                 <section className="single-post">
@@ -52,11 +56,11 @@ class PostsIndexItem extends React.Component {
                                 ) : ""}
                             </div>
                             <div>
-                                <span>{formatDate(createdAt)}</span>
+                                <span>{formatDate(createdDate)}</span>
                                 <i className="fas fa-user-friends"></i>
                             </div>
                         </div>
-                        {(author.id === currentUserId || user.id === currentUserId) ? (
+                        {(author.id === currentUserId || user.id === currentUserId) && type !== 'birth' ? (
                             <>
                                 <div
                                     className="more-actions"
@@ -82,12 +86,24 @@ class PostsIndexItem extends React.Component {
                         ) : ""}
                         {this.state.displayEditForm ? <EditPostFormContainer post={this.props.post} closeModal={this.closeModal}/>: ""}
                     </div>
-                    <div className="post-body">{body}</div>
+                    <div className="post-body">{type === 'birth' ? (
+                        <div className="born-post">
+                            <div className="baby-icon">
+                                <i class="fas fa-baby"></i>
+                            </div>
+                            <span>Born on {formatDate(createdDate)}</span>
+                        </div>
+                    ) : body}
+                        </div>
                 </section>
-                <div className="post-photo-gallery">
-                    {all_photos}
-                </div>
-                <CommentsIndex comments={comments} postId={id} isFriend={this.props.isFriend} totalComments={this.props.totalComments}/>
+                {type !== 'birth' ? (
+                    <>
+                    <div className="post-photo-gallery">
+                        {all_photos}
+                    </div>
+                    <CommentsIndex comments={comments} postId={id} isFriend={this.props.isFriend} totalComments={this.props.totalComments}/>
+                    </>
+                ) : ""}
             </li>
         );
 

@@ -5,15 +5,16 @@ import {isEmpty} from 'lodash';
 import {deletePost} from '../../actions/posts_actions';
 
 const msp = (state, ownProps) => {
-    const authorId = ownProps.post.authorId;
-    const userId = ownProps.post.userId;
-    const postId = ownProps.post.id;
     const currentUserId = state.session.currentUserId;
+    const profileId = ownProps.profileInfo ? ownProps.profileInfo.id : currentUserId;
+    const authorId = ownProps.post.authorId || profileId;
+    const userId = ownProps.post.userId || profileId;
+    const postId = ownProps.post.id || null;
     return {
         author: state.entities.users[authorId] || {},
         user: state.entities.users[userId] || {},
-        comments: isEmpty(state.entities.comments) ? {} : (getAllPostComments(state, ownProps.post.id)),
-        totalComments: state.entities.posts[postId].commentIds.length,
+        comments: (isEmpty(state.entities.comments)) ? {} : postId ? (getAllPostComments(state, ownProps.post.id)) : {},
+        totalComments: postId ? state.entities.posts[postId].commentIds.length : 0,
         isFriend: ownProps.isFriend,
         currentUserId
     }

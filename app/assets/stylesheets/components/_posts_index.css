@@ -111,3 +111,31 @@ li.section-box{
     left: -20px;
     font-weight: normal;
 }
+
+.single-post .born-post {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+}
+
+.single-post .born-post i {
+    color: #fff;
+    font-size: 25px;
+}
+
+.single-post .born-post span {
+    font-size: 20px;
+}
+
+.single-post .born-post .baby-icon {
+    background: #3478E4;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
