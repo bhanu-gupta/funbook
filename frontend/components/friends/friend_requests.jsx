@@ -45,8 +45,8 @@ class FriendRequests extends React.Component {
         return (
             <>
             <MainNavContainer />
-                <div className="main-content profile-main">
-                <div className="profile-content pdng-20">
+                <div className="main-content profile-main other-page">
+                <div className="profile-content pdng-nav">
                     <section className="friend-requests">
                         <header>
                             <h1>{heading}</h1>

@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.all-posts li{
+li.section-box{
     list-style-type: none;
 }
 
@@ -27,12 +27,12 @@
     justify-content: center;
 }
 
-.all-posts .single-post {
+.section-box .single-post {
     font-size: 14px;
     padding: 12px 12px 0;
 }
 
-.all-posts .post-body {
+.section-box .post-body {
     font-size: 14px;
     margin-top: 6px;
     width: 100%;

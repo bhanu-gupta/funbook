@@ -1,0 +1,59 @@
+.search-user-box {
+    margin-bottom: 10px;
+}
+
+.search-user-box  > li {
+    width: 100%;
+    border: 1px solid #ccd0d5;
+    margin: 1px 0;
+    padding: 12px;
+    float:left;
+    display:flex;
+    position: relative;
+    background: #fff;
+}
+
+.search-user-box  li .profile-img {
+    height: 74px;
+    width: 74px;
+    border-radius: 50%;
+    margin: 0;
+    margin-right: 10px;
+    text-align: center;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+
+}
+
+.search-user-box li .profile-img img {
+    height: 74px;
+    width: auto;
+    min-width: initial;
+    text-align: center;
+}
+
+.search-user-box li .profile-img a {
+    margin-left: 0;
+    max-width: none;
+}
+
+.search-user-box  .friend-info {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.search-user-box  .friend-info span.friend-name {
+    color: #385898;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.search-user-box  .friend-info span {
+    color: #90949c;
+    font-size: 12px;
+}
+
+.search-user-box .header-buttons {
+    top: 5px;
+}

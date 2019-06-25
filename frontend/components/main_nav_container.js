@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import MainNav from './main_nav';
 import { logout} from '../actions/auth_actions';
+import {withRouter} from 'react-router-dom';
 
 const msp = state => {
     const currentUserId = state.session.currentUserId;
@@ -15,4 +16,4 @@ const mdp = dispatch => {
     };
 };
 
-export default connect(msp, mdp)(MainNav);
+export default withRouter(connect(msp, mdp)(MainNav));

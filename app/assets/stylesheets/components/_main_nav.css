@@ -4,6 +4,9 @@
     border-bottom:1px solid #133783;
     height:43px;
     font-family: Helvetica, Arial, sans-serif;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
 }
 
 .main-header h1 i{
@@ -183,6 +186,7 @@ ul .nav-icons.col-white, ul .nav-icons.col-white:hover{
     justify-content: center;
     align-items: center;
     background-color: #f5f6f7;
+    cursor: pointer;
 }
 
 .main-header ul.nav-links li.pdg-top {

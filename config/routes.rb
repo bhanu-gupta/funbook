@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create, :update, :destroy]
     resources :comments, only: [:create, :update, :destroy]
     resources :friends, only: [:index]
+    resources :search, only: [:index]
   end
   
 end

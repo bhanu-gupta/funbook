@@ -1,8 +1,14 @@
 import {getUniqueArrayValues} from '../util/helper_util';
  
 export const getAllProfilePosts = (state, profileId, type) => {
-    let timelinePostIds = state.entities.users[profileId].postIds || [];
-    let userFriends = state.entities.users[profileId].friendIds || [];
+    let timelinePostIds = [];
+    let userFriends = [];
+    if (type === 'search') {
+        timelinePostIds = state.ui.search.postIds || [];
+    } else {
+        timelinePostIds = state.entities.users[profileId].postIds || [];
+        userFriends = state.entities.users[profileId].friendIds || [];
+    }
     const posts = [];
     if (timelinePostIds.length > 0 && state.entities.posts) {
         timelinePostIds.forEach((id) => {
@@ -12,7 +18,7 @@ export const getAllProfilePosts = (state, profileId, type) => {
                     if (post.userId === post.authorId && (profileId == post.authorId || userFriends.includes(post.userId))) {
                         posts.push(post);
                     }
-                } else if(post.userId == profileId) {
+                } else if(post.userId == profileId || type === 'search') {
                     posts.push(post);
                 }
             }
@@ -36,6 +42,8 @@ export const getUserFriends = (state, profileId, type = "accepted", limit = null
                 friendIds = state.entities.users[profileId].friendIds;
                 break;
         }
+    } else if (type === 'search' && state.ui.search.userIds) {
+        friendIds = state.ui.search.userIds;
     }
     if (friendIds && friendIds.length > 0) {
         if (limit) {

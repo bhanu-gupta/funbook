@@ -5,17 +5,11 @@ class MainNav extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {showDropdown: 0};
+        this.state = {showDropdown: 0, searchTerm: ''};
         this.toggleMenu = this.toggleMenu.bind(this);
         this.hideMenu = this.hideMenu.bind(this);
-    }
-
-    componentDidMount() {
-        // document.addEventListener('mousedown', this.hideMenu);
-    }
-
-    componentWillUnmount() {
-        // document.removeEventListener('mousedown', this.hideMenu);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.updateSearch = this.updateSearch.bind(this);
     }
 
     toggleMenu(event) {
@@ -29,6 +23,17 @@ class MainNav extends React.Component {
     hideMenu(event) {
         event.stopPropagation();
         this.setState({ showDropdown: 0 })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        if (this.state.searchTerm) {
+            this.props.history.push(`/search/${this.state.searchTerm}`)
+        }
+    }
+
+    updateSearch(e) {
+        this.setState({searchTerm: e.currentTarget.value});
     }
 
     render() {
@@ -58,9 +63,9 @@ class MainNav extends React.Component {
                             <i></i>
                         </Link>
                     </h1>
-                    <form className="search-bar">
-                        <input type="text" placeholder="Search"/>
-                            <i className="fas fa-search search-icon"></i>
+                    <form className="search-bar" onSubmit={this.handleSubmit}>
+                        <input type="text" placeholder="Search" onChange={this.updateSearch}/>
+                            <i className="fas fa-search search-icon" onClick={this.handleSubmit}></i>
                     </form>
                 </div>
                 <ul className="nav-links">

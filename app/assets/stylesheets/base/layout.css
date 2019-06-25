@@ -9,6 +9,7 @@ body {
     width:100%;
     background-color: #e9ebee;
     padding: 80px 0;
+    min-height: 100vh;
 }
 
 .auth-content {
@@ -196,4 +197,18 @@ button.blue-btn {
 
 button.blue-btn:hover {
     background: #365899;
+}
+
+.pdng-nav {
+    padding-top: 44px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.main-content.other-page {
+    padding-top: 0;
 }

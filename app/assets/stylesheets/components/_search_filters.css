@@ -1,0 +1,32 @@
+.search-sidebar {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    color: #4b4f56;
+}
+
+.search-sidebar h1 {
+    font-size: 18px;
+}
+
+.all-filters {
+    list-style-type: none;
+}
+
+.all-filters li fieldset{
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+.all-filters li {
+    margin: 20px 0;
+    font-size: 12px;
+}
+
+.all-filters li  h2 {
+    font-weight: bold;
+}
+
+.all-filters li input {
+    margin-right: 8px;
+}

@@ -1,0 +1,54 @@
+.search-posts-box li{
+    width: 100%;
+    border: none;
+    background: none;
+    border-top: 1px solid #ccc;
+}
+
+.search-posts-box {
+    padding: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    background: #fff;
+}
+
+.section-heading.post-heading {
+    padding: 0;
+    margin-bottom: 10px;
+    border:none;
+}
+
+.search-posts-box .post-date {
+    color: #606770;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.search-posts-box .profile-pic {
+    width: 42px;
+    height: 42px;
+}
+
+.search-posts-box .profile-pic  img {
+    height: 42px;
+}
+
+.post-desc {
+    display: flex;
+}
+
+.search-posts-box .search-photo-gallery figure {
+    margin: 0;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.search-posts-box .search-photo-gallery figure img {
+    height: 90px;
+    width: auto;
+    min-width: initial;
+}
