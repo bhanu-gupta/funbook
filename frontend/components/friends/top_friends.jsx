@@ -13,7 +13,9 @@ const TopFriends = ({ friends, profileId}) => {
         );
     });
     return (
-        <section className="sidebar-section top-friends">
+        <>
+        {allFriends.length > 0 ? (
+            <section className="sidebar-section top-friends">
             <header>
                 <Link to={`/users/${profileId}/friends`}><i className="fas fa-user-friends sidebar-icon friends-icon fa-sm"></i></Link>
                 <Link to={`/users/${profileId}/friends`}><h1>Friends</h1></Link>
@@ -22,6 +24,8 @@ const TopFriends = ({ friends, profileId}) => {
                 {allFriends}
             </ul>
         </section>
+        ) : ""}
+        </>
     );
 }
 
