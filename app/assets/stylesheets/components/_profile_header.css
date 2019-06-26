@@ -25,11 +25,14 @@
 }
 
 .profile-header-main {
-     height: 315px;
+     height: 205px;
      background-color: #1c1e21;
      position: relative;
      text-align:center;
-     overflow: hidden;
+}
+
+.profile-header-main.large-cover {
+    height: 315px;
 }
 
 .profile-header-menu {
@@ -154,6 +157,7 @@
 
 .profile-header .cover-pic {
     height: 100%;
+    max-width: 850px;
 }
 
 .profile-header input[type=file] {

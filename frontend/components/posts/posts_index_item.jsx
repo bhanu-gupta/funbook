@@ -89,7 +89,7 @@ class PostsIndexItem extends React.Component {
                     <div className="post-body">{type === 'birth' ? (
                         <div className="born-post">
                             <div className="baby-icon">
-                                <i class="fas fa-baby"></i>
+                                <i className="fas fa-baby"></i>
                             </div>
                             <span>Born on {formatDate(createdDate)}</span>
                         </div>

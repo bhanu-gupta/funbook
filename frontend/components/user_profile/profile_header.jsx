@@ -59,9 +59,10 @@ class ProfileHeader extends React.Component {
         const { profileInfo, currentUser } = this.props;
         const profile_preview = this.state.profile_photo.url ? this.state.profile_photo.url : (profileInfo ? profileInfo.profilePhoto : null);
         const cover_preview = this.state.cover_photo.url ? this.state.cover_photo.url : (profileInfo ? profileInfo.coverPhoto : null);
+        const headerClass = "profile-header-main " + (cover_preview ? "large-cover" : ""); 
         return profileInfo ?  (
             <section className="profile-header">
-                <div className="profile-header-main">
+                <div className={headerClass}>
                     <img className="cover-pic" src={cover_preview} alt=""/>
                     <div>
                         {profileInfo.id === currentUser.id ? (
