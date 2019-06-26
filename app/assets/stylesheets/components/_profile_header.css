@@ -25,10 +25,11 @@
 }
 
 .profile-header-main {
-     height: 205px;
+     height: 315px;
      background-color: #1c1e21;
      position: relative;
      text-align:center;
+     overflow: hidden;
 }
 
 .profile-header-menu {

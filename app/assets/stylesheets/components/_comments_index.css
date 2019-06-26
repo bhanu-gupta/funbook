@@ -43,7 +43,7 @@
 .single-comment li .profile-pic img{
     width: auto;
     height: 32px;
-    border-radius: 50%;
+    min-width: initial;
 }
 
 .single-comment li .profile-pic {
@@ -55,6 +55,7 @@
     border-radius: 50%;
     display: flex;
     justify-content: center;
+    border: 1px solid #C0C2C7;
 }
 
 .single-comment .comment-info {
