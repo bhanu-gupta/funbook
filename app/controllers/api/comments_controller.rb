@@ -25,11 +25,14 @@ class Api::CommentsController < ApplicationController
 
     def destroy
         comment = current_user.profile_comments.find_by(id: params[:id])
+        if !comment
+            comment = current_user.authored_comments.find_by(id: params[:id])
+        end
         if comment
             @comment = comment
             if comment.destroy
                 render :destroy
-            end
+            end 
         else
             render json: ["You can only delete comments on your timeline"], status: 422
         end

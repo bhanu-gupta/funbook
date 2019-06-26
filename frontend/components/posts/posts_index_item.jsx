@@ -29,11 +29,12 @@ class PostsIndexItem extends React.Component {
         const { author, user, comments, deletePost, currentUserId, type, profileInfo} = this.props;
         const all_photos = photoUrls ? photoUrls.slice(0, 5).map((photoUrl, idx) => {
             return (
-                <figure key={idx}>
-                    <img src={photoUrl}/>
-                </figure>
+              <figure>
+                <img key={idx} src={photoUrl} />
+              </figure>
             );
         }) : "";
+        const photosClass = "post-photo-gallery "  + (all_photos.length === 1 ? "one-col" : "");
         let createdDate = createdAt;
         if (type === 'birth') {
             createdDate = profileInfo.birthday;
@@ -98,7 +99,7 @@ class PostsIndexItem extends React.Component {
                 </section>
                 {type !== 'birth' ? (
                     <>
-                    <div className="post-photo-gallery">
+                    <div className={photosClass}>
                         {all_photos}
                     </div>
                     <CommentsIndex comments={comments} postId={id} isFriend={this.props.isFriend} totalComments={this.props.totalComments}/>
