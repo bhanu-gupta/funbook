@@ -10,9 +10,9 @@
 
 # Technologies used
 
-    * Backend: Ruby on Rails, Postgres
+    * Backend: Ruby on Rails, PostgreSQL
     * Frontend: React, Redux, Javascript, CSS, HTML
-    * Services: AWS
+    * Services: AWS, Heroku
 
 # Features
 
@@ -22,30 +22,30 @@
 
         * Frontend signup validations
 
-            ![alt text](app/assets/images/signup.png)
+![Signup](app/assets/images/signup.png)
     
     * Posts and Comments
         * Ability to attach multiple photos with a post
 
-            ![alt text](app/assets/images/create-post.png)
+![Create/Edit Post](app/assets/images/create-post.png)
 
         * Ability to add or delete a photo while creating the post
         * Display the photos dynamically using CSS grid
 
-            ![alt text](app/assets/images/post-view.png)
+![View Post](app/assets/images/post-view.png)
 
         * Use AWS to host all images
         * Control posting and commenting on a user profile based on users friends
         * Display and add nested comments 
 
-            ![alt text](app/assets/images/comment.png)
+![Nested Comments](app/assets/images/comment.png)
 
     * Friending 
         * Accept, send, cancel friend request, unfriend a user and make the changes reflect across the application without even a page refresh
 
     * Search users and posts and filter search results
 
-        ![alt text](app/assets/images/search.png)
+![Search](app/assets/images/search.png)
 
 # Code snippets
 
