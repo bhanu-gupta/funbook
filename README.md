@@ -16,7 +16,7 @@
 
 # Features
 
-    ![alt text](app/assets/images/profile.png)
+![Profile](app/assets/images/profile.png)
 
     *User Authentication
 
