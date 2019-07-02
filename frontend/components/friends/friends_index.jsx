@@ -5,21 +5,32 @@ import PageNotFound from '../page_not_found';
 
 class FriendsIndex extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        }
+    }
+
     componentDidMount() {
-        this.fetchUserFriends(this.props.match.params.userId);
+        this.fetchUserFriends(this.props.match.params.userId).then(() =>
+          this.setState({ loading: false })
+        );;
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.profileId != prevProps.profileId) {
-            this.fetchUserFriends(this.props.match.params.userId);
+            this.fetchUserFriends(
+              this.props.match.params.userId
+            ).then(() => this.setState({ loading: false }));;
         }
     }
 
     fetchUserFriends(userId) {
         if (this.props.currentUser.id === userId) {
-            this.props.fetchMyFriends();
+            return this.props.fetchMyFriends();
         } else {
-            this.props.fetchFriendsFriends(userId);
+            return this.props.fetchFriendsFriends(userId);
         }
     }
 
@@ -38,7 +49,7 @@ class FriendsIndex extends React.Component {
         }
         return (
             <>
-                {this.props.profileInfo ? (
+                {this.props.friends ? (
                     <section className="friends-section">
                         <div className="friends-header">
                             <div className="heading">
@@ -48,10 +59,10 @@ class FriendsIndex extends React.Component {
                             {friendButtons}
                         </div>
                         <ul className="friend-boxes">
-                            {all_friends.length > 0 ? all_friends : <div className="no-content">No Friends to Show</div>}
+                            {this.state.loading === false ? (all_friends.length > 0 ? all_friends : <div className="no-content">No Friends to Show</div>) : ""}
                         </ul>
                     </section>
-                ) : <PageNotFound />}
+                ) : ""}
             </>
         );
     }
