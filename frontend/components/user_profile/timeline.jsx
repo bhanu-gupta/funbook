@@ -8,17 +8,28 @@ import PostsIndexItemContainer from '../posts/posts_index_item_container';
 
 class Timeline extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        }
+    }
+
     componentDidMount() {
         const profileId = this.props.match.params.userId || 
             this.props.currentUser.id;
-        this.props.fetchTimelineData(profileId);
+        this.props
+            .fetchTimelineData(profileId)
+            .then(() => this.setState({loading: false}));
     }
 
     componentDidUpdate(prevProps) {
         const profileId = this.props.match.params.userId ||
             this.props.currentUser.id;
         if (this.props.match.params.userId != prevProps.match.params.userId) {
-            this.props.fetchTimelineData(profileId);
+            this.props
+              .fetchTimelineData(profileId)
+              .then(() => this.setState({ loading: false }));
         }
     }
 
@@ -32,19 +43,23 @@ class Timeline extends React.Component {
         }
         return (
                 <>
-                {this.props.profileInfo ? (
+                {this.state.loading === false ? (
                     <>
-                    <section className="timeline-sidebar">
-                        <IntroContainer profileInfo={profileInfo} currentUser={currentUser}/>
-                        <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
-                    </section>
-                    <section className="timeline-posts">
-                            {isFriend ? <CreatePostFormContainer profileInfo={profileInfo} currentUser={currentUser}/> : ""}
-                        <PostsIndexContainer isFriend={isFriend}/>
-                        <PostsIndexItemContainer post={{}} isFriend={isFriend} type="birth" profileInfo={profileInfo}/>
-                    </section>
+                    {this.props.profileInfo ? (
+                        <>
+                        <section className="timeline-sidebar">
+                            <IntroContainer profileInfo={profileInfo} currentUser={currentUser}/>
+                            <TopFriends friends={this.props.friends} profileId={this.props.match.params.userId} />
+                        </section>
+                        <section className="timeline-posts">
+                                {isFriend ? <CreatePostFormContainer profileInfo={profileInfo} currentUser={currentUser}/> : ""}
+                            <PostsIndexContainer isFriend={isFriend}/>
+                            <PostsIndexItemContainer post={{}} isFriend={isFriend} type="birth" profileInfo={profileInfo}/>
+                        </section>
+                        </>
+                    ): <PageNotFound />}
                     </>
-                ): <PageNotFound />}
+                ) : ""}
                     
                 </>
         );
