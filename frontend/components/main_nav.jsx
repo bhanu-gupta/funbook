@@ -75,7 +75,7 @@ class MainNav extends React.Component {
                         ) : ""}
                     </li>
                     <li className="nav-border pdg-top"><Link to="/">Home</Link></li>
-                    <li className="nav-border pdg-top"><Link to="#">Create</Link></li>
+                    {/* <li className="nav-border pdg-top"><Link to="#">Create</Link></li> */}
                     <li className="nav-border icons">
                             <i className="fas fa-user-friends fa-lg nav-icons"></i>
                     </li>
