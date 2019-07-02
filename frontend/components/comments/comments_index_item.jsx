@@ -91,8 +91,8 @@ class CommentsIndexItem extends React.Component {
                             <div className="comment-actions">
                                 {this.props.isFriend ? (
                                     <>
-                                        <span><Link to="#">Like</Link></span>
-                                        <span className="separator">.</span>
+                                        {/* <span><Link to="#">Like</Link></span> */}
+                                        {/* <span className="separator">.</span> */}
                                         <span><Link to="#" onClick={this.replyComment(comment.parentId ? comment.parentId : comment.id)}>Reply</Link></span>
                                         <span className="separator">.</span>
                                     </>

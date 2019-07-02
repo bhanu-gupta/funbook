@@ -103,9 +103,9 @@ class ProfileHeader extends React.Component {
                                 </span>
                             </Link>
                         </li>
-                        <li className={urlPath.match(/photos/i) ? "menu-selected" : ""}>
+                        {/* <li className={urlPath.match(/photos/i) ? "menu-selected" : ""}>
                             <Link to={`/users/${profileInfo.id}/photos`}>Photos</Link>
-                        </li>
+                        </li> */}
                         {/* <li>Archive</li>
                         <li>More</li> */}
                     </ul>

@@ -31,20 +31,20 @@ const CommentsIndex = (props) => {
             <ul className="comments-nav">
                 {props.isFriend ? (
                     <>
-                        <li>
+                        {/* <li>
                             <i className="fas fa-thumbs-up"></i>
                             <span>Like</span>
-                        </li>
+                        </li> */}
                         <li onClick={() => document.getElementById(`comment-${props.postId}`).focus()}>
                             <i className="far fa-comment-alt"></i>
                             <span>Comment</span>
                         </li>
                     </>
                 ) : ""}
-                <li>
+                {/* <li>
                     <i className="fas fa-share"></i>
                     <span>Share</span>
-                </li>
+                </li> */}
             </ul>
             <ul className="single-comment">
                 {all_comments}
